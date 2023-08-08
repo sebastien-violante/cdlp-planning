@@ -17,12 +17,13 @@
             <div class="card-header">{{ client.firstname }} {{ client.initial }}.</div>
             <div class="card-header">{{ client.phoneNumber }} </div>
             <ul class="list-group list-group-flush">
-                <li class="list-group-item">Du {{ client.arrivalDate|date("d/m/Y à H:m") }} au {{ client.departureDate|date("d/m/Y à H:m") }}</li>
+                <li class="list-group-item">du {{ client.arrivalDate|date("d/m/Y à H:m") }}<br>
+                au {{ client.departureDate|date("d/m/Y à H:m") }}</li>
                 <li class="list-group-item">{{ client.adults }} {{ (client.adults > 1) ? 'adultes' : 'adulte' }}
                 - {{ client.children }} {{ (client.children > 1) ? 'enfants' : 'enfant'  }}</li>
-                <form class="my-1 mx-3" action="#">
+                <form class="my-1 w-100 px-5" action="#">
                     <input type="hidden" name="cleaned" value="true">
-                    <input class="btn btn-success" type="submit" value="Sortie effectuée">
+                    <input class="btn btn-success w-100" type="submit" value="Sortie effectuée">
                 </form>
             </ul>
     {% endfor %}
