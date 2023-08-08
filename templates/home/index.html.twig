@@ -9,12 +9,32 @@
 </style>
 
 <div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
+    <h1>Corniche de la plage</h1>
+    <h3>Planning des locations</h3>
 
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code><a href="{{ '/home/sebastienviolante/SymfonyProjects/cdlp/src/Controller/HomeController.php'|file_link(0) }}">src/Controller/HomeController.php</a></code></li>
-        <li>Your template at <code><a href="{{ '/home/sebastienviolante/SymfonyProjects/cdlp/templates/home/index.html.twig'|file_link(0) }}">templates/home/index.html.twig</a></code></li>
-    </ul>
+    {% for client in clients %}
+        <div class="card my-2" style="">
+            <div class="card-header">{{ client.firstname }} {{ client.initial }}.</div>
+            <div class="card-header">{{ client.phoneNumber }} </div>
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item">Du {{ client.arrivalDate|date("d/m/Y à H:m") }} au {{ client.departureDate|date("d/m/Y à H:m") }}</li>
+                <li class="list-group-item">
+                    <p class="d-inline-flex gap-1">
+                        <a class="btn btn-primary" data-bs-toggle="collapse" href="#multiCollapseExample1" role="button" aria-expanded="false" aria-controls="multiCollapseExample1">Personnes à loger</a>
+                    </p>
+                    <div class="row">
+                        <div class="col">
+                            <div class="collapse multi-collapse" id="multiCollapseExample1">
+                                <div class="card card-body">
+                                    {{ client.adults }} adulte(s) - {{ client.children }} enfant(s)
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+       
+    {% endfor %}
 </div>
 {% endblock %}
