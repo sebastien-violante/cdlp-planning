@@ -18,23 +18,13 @@
             <div class="card-header">{{ client.phoneNumber }} </div>
             <ul class="list-group list-group-flush">
                 <li class="list-group-item">Du {{ client.arrivalDate|date("d/m/Y à H:m") }} au {{ client.departureDate|date("d/m/Y à H:m") }}</li>
-                <li class="list-group-item">
-                    <p class="d-inline-flex gap-1">
-                        <a class="btn btn-primary" data-bs-toggle="collapse" href="#multiCollapseExample1" role="button" aria-expanded="false" aria-controls="multiCollapseExample1">Personnes à loger</a>
-                    </p>
-                    <div class="row">
-                        <div class="col">
-                            <div class="collapse multi-collapse" id="multiCollapseExample1">
-                                <div class="card card-body">
-                                    {{ client.adults }} adulte(s) - {{ client.children }} enfant(s)
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </li>
+                <li class="list-group-item">{{ client.adults }} {{ (client.adults > 1) ? 'adultes' : 'adulte' }}
+                - {{ client.children }} {{ (client.children > 1) ? 'enfants' : 'enfant'  }}</li>
+                <form class="my-1 mx-3" action="#">
+                    <input type="hidden" name="cleaned" value="true">
+                    <input class="btn btn-success" type="submit" value="Sortie effectuée">
+                </form>
             </ul>
-        </div>
-       
     {% endfor %}
 </div>
 {% endblock %}
