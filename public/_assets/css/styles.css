@@ -1,0 +1,27 @@
+.flex {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.vertical {
+    flex-direction: column;
+}
+
+.header {
+    padding: 1em;
+    background-color: rgba(165, 42, 42, 0.7);
+    height: 100px;
+}
+
+ .top {
+    padding-top: 100px;
+ }
+
+ .icon {
+    height: 30px;
+ }
+
+ .box-shadow {
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+ }

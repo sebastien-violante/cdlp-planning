@@ -8,23 +8,23 @@
     .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
 </style>
 
-<div class="example-wrapper">
-    <h1>Corniche de la plage</h1>
-    <h3>Planning des locations</h3>
-
+<div class="example-wrapper top">
     {% for client in clients %}
-        <div class="card my-2" style="">
+        <div class="card my-2 relative box-shadow" style="">
             <div class="card-header">{{ client.firstname }} {{ client.initial }}.</div>
-            <div class="card-header">{{ client.phoneNumber }} </div>
+            <div class="position-absolute end-0 pe-2" style="line-height: 2.5em">
+                <img src="{{ asset('_assets/pictures/phone.png')}}" class="icon">
+                {{ client.phoneNumber }} </div>
             <ul class="list-group list-group-flush">
                 <li class="list-group-item">du {{ client.arrivalDate|date("d/m/Y à H:m") }}<br>
                 au {{ client.departureDate|date("d/m/Y à H:m") }}</li>
                 <li class="list-group-item">{{ client.adults }} {{ (client.adults > 1) ? 'adultes' : 'adulte' }}
                 - {{ client.children }} {{ (client.children > 1) ? 'enfants' : 'enfant'  }}</li>
-                <form class="my-1 w-100 px-5" action="#">
-                    <input type="hidden" name="cleaned" value="true">
+                <li class="list-group-item">
+                <form class="my-1 w-100 px-5" method="POST" action="{{ path('app_delete', {'id': client.id }) }}" onsubmit="return confirm('Etes-vous sûr de supprimer ce client ?');">    
                     <input class="btn btn-success w-100" type="submit" value="Sortie effectuée">
                 </form>
+                </li>
             </ul>
     {% endfor %}
 </div>

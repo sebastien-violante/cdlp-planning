@@ -4,6 +4,8 @@ namespace App\Controller;
 
 use App\Entity\Client;
 use App\Form\ClientType;
+use App\Repository\ClientRepository;
+use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -30,6 +32,19 @@ class ClientController extends AbstractController
         return $this->render('client/index.html.twig', [
             'clientForm' => $form->createView(),
         ]);
+    }
+
+    #[Route('/{id}', name: 'app_delete', methods: ['POST'])]
+    public function deleteClient(
+       ClientRepository $clientRepository,
+       EntityManagerInterface $entityManagerInterface,
+       int $id,
+    ): Response {
+        $client = $clientRepository->findOneBy(['id' => $id]);
+        $entityManagerInterface->remove($client);
+        $entityManagerInterface->flush();
+        
+        return $this->redirectToRoute('app_home');
     }
 
 }
