@@ -11,9 +11,10 @@
 <div class="example-wrapper top">
     {% for client in clients %}
         <div class="card my-2 relative box-shadow" style="">
-            <div class="card-header">{{ client.firstname }} {{ client.initial }}.</div>
+            <div class="card-header">{{ client.firstname }} {{ client.initial }}.<a id={{ client.initial }} href="{{ path('app_delete', {'id': client.id }) }}"><img class="icon" src="{{ asset('_assets/pictures/bin.svg')}}"></a></div>
+            
             <div class="position-absolute end-0 pe-2" style="line-height: 2.5em">
-                <img src="{{ asset('_assets/pictures/phone.png')}}" class="icon">
+                <img src="{{ asset('_assets/pictures/phone.svg')}}" class="icon">
                 {{ client.phoneNumber }} </div>
             <ul class="list-group list-group-flush">
                 <li class="list-group-item">du {{ client.arrivalDate|date("d/m/Y à H:m") }}<br>

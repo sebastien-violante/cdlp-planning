@@ -34,7 +34,7 @@ class ClientController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}', name: 'app_delete', methods: ['POST'])]
+    #[Route('/{id}', name: 'app_delete', methods: ['POST', 'GET'])]
     public function deleteClient(
        ClientRepository $clientRepository,
        EntityManagerInterface $entityManagerInterface,
