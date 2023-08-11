@@ -34,7 +34,7 @@ class ClientController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}', name: 'app_delete', methods: ['POST', 'GET'])]
+    #[Route('/delete/{id}', name: 'app_delete', methods: ['POST', 'GET'])]
     public function deleteClient(
        ClientRepository $clientRepository,
        EntityManagerInterface $entityManagerInterface,
@@ -42,6 +42,20 @@ class ClientController extends AbstractController
     ): Response {
         $client = $clientRepository->findOneBy(['id' => $id]);
         $entityManagerInterface->remove($client);
+        $entityManagerInterface->flush();
+        
+        return $this->redirectToRoute('app_home');
+    }
+
+    #[Route('/cleaned/{id}', name: 'app_clean', methods: ['POST', 'GET'])]
+    public function cleanedClient(
+       ClientRepository $clientRepository,
+       EntityManagerInterface $entityManagerInterface,
+       int $id,
+    ): Response {
+        $client = $clientRepository->findOneBy(['id' => $id]);
+        $client->setCleaned(true);
+        $entityManagerInterface->persist($client);
         $entityManagerInterface->flush();
         
         return $this->redirectToRoute('app_home');

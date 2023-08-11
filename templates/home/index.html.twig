@@ -10,9 +10,9 @@
 
 <div class="example-wrapper top">
     {% for client in clients %}
-        <div class="card my-2 relative box-shadow" style="">
-            <div class="card-header">{{ client.firstname }} {{ client.initial }}.<a id={{ client.initial }} href="{{ path('app_delete', {'id': client.id }) }}"><img class="icon" src="{{ asset('_assets/pictures/bin.svg')}}"></a></div>
-            
+        <div class="card my-2 relative box-shadow" style=
+        "backgound-color:{{ (client.cleaned == true) ? 'black' : 'black' }}">
+            <div class="card-header">{{ client.firstname }} {{ client.initial }}.<a href="{{ path('app_delete', {'id': client.id }) }}" onclick="return confirm('Etes-vous sûr de supprimer ce client ?');"><img class="icon" src="{{ asset('_assets/pictures/bin.svg')}}"></a></div>
             <div class="position-absolute end-0 pe-2" style="line-height: 2.5em">
                 <img src="{{ asset('_assets/pictures/phone.svg')}}" class="icon">
                 {{ client.phoneNumber }} </div>
@@ -22,7 +22,7 @@
                 <li class="list-group-item">{{ client.adults }} {{ (client.adults > 1) ? 'adultes' : 'adulte' }}
                 - {{ client.children }} {{ (client.children > 1) ? 'enfants' : 'enfant'  }}</li>
                 <li class="list-group-item">
-                <form class="my-1 w-100 px-5" method="POST" action="{{ path('app_delete', {'id': client.id }) }}" onsubmit="return confirm('Etes-vous sûr de supprimer ce client ?');">    
+                <form class="my-1 w-100 px-5" method="POST" action="{{ path('app_clean', {'id': client.id }) }}">    
                     <input class="btn btn-success w-100" type="submit" value="Sortie effectuée">
                 </form>
                 </li>
