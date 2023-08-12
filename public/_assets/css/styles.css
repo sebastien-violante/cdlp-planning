@@ -1,3 +1,7 @@
+body {
+    background-color:aliceblue;
+}
+
 .flex {
     display: flex;
     align-items: center;
@@ -29,4 +33,13 @@
 
  .box-shadow {
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+ }
+
+ .center {
+    text-align: center;
+    margin-bottom: 0px;
+ }
+
+ .light {
+    background-color:rgba(95, 158, 160, 0.8)
  }

@@ -8,10 +8,10 @@
     .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
 </style>
 
-<div class="example-wrapper top">
+<div class="example-wrapper">
     {% for client in clients %}
         <div class="card my-2 relative box-shadow">
-            <div class="card-header">{{ client.firstname }} {{ client.initial }}.<a href="{{ path('app_delete', {'id': client.id }) }}" onclick="return confirm('Etes-vous sûr de supprimer ce client ?');"><img class="icon" src="{{ asset('_assets/pictures/bin.svg')}}"></a></div>
+            <div class="card-header"><strong>{{ client.firstname }} {{ client.initial }}.</strong><a href="{{ path('app_delete', {'id': client.id }) }}" onclick="return confirm('Etes-vous sûr de supprimer ce client ?');"><img class="icon" src="{{ asset('_assets/pictures/bin.svg')}}"></a></div>
             <div class="position-absolute end-0 pe-2" style="line-height: 2.5em">
                 <img src="{{ asset('_assets/pictures/phone.svg')}}" class="icon">
                 {{ client.phoneNumber }} 
@@ -23,13 +23,13 @@
                 - {{ client.children }} {{ (client.children > 1) ? 'enfants' : 'enfant'  }}</li>
                 <li class="list-group-item">
                     {% if client.cleaned == false %}
-                        <form class="my-1 w-100 px-5" method="POST" action="{{ path('app_clean', {'id': client.id }) }}">    
-                            <input class="btn btn-success w-100" type="submit" value="Valider le départ">
-                        </form>
-                    {% else %}
-                        <div class="alert alert-success" role="alert">
-                            Départ validé
+                        <div class="flex">
+                            <form class="" method="POST" action="{{ path('app_clean', {'id': client.id }) }}">    
+                                <input class="btn btn-primary w-100" type="submit" value="Valider le départ">
+                            </form>
                         </div>
+                    {% else %}
+                        <div class="alert alert-success center" role="alert">Départ validé</div>
                     {% endif %}
                 </li>
             </ul>
