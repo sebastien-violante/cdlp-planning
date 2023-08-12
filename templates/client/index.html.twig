@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello ClientController!{% endblock %}
+{% block title %}{{ parent() }} | Nouveau cient{% endblock %}
 
 {% block body %}
 <style>
@@ -10,7 +10,8 @@
 
 <div class="example-wrapper">
     
-    <h1 class="center">Enregistrer un nouveau client</h1>
+    <h1 class="center mb-3">Ajouter un nouveau client</h1>
+    <hr>
 
     {{form(clientForm)}}
 </div>
