@@ -32,13 +32,13 @@ class ClientController extends AbstractController
             $entityManagerInterface->persist($client);
             $entityManagerInterface->flush();
             $fromEmail = 'bastien.c@dev-uptoyou.fr';
-            $toEmail = 'sebastien.violante@gmail.com';
+            $toEmail = 'bastien.c@dev-uptoyou.fr';
             $email = new TemplatedEmail();
             $email->from($fromEmail)
             ->to($toEmail)
-            ->subject('Nouvelle réservation')
+            ->subject('Corniche de la plage : nouvelle réservation')
             ->text('Une nouvelle réservation a été effectuée pour la Corniche de la plage')
-            ->htmlTemplate('email/rentalEmail.html.twig')
+            ->htmlTemplate('/email/rentalEmail.html.twig')
             ->context([
                 'client' => $client
             ]);
