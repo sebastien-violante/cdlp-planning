@@ -10,8 +10,8 @@ use App\Repository\ClientRepository;
 use Symfony\Component\Mailer\Mailer;
 use Symfony\Component\Mailer\Transport;
 use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Bridge\Twig\Mime\TemplatedEmail;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\Mailer\MailerInterface;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -22,7 +22,6 @@ class ClientController extends AbstractController
     public function addNewClient(
         Request $request,
         EntityManagerInterface $entityManagerInterface,
-        MailerInterface $mailerInterface
     ): Response {
         $client = new Client();
         $form = $this->createForm(ClientType::class, $client);
@@ -34,12 +33,16 @@ class ClientController extends AbstractController
             $entityManagerInterface->flush();
             $fromEmail = 'bastien.c@dev-uptoyou.fr';
             $toEmail = 'sebastien.violante@gmail.com';
-            $email = (new Email())
-            ->from($fromEmail)
+            $email = new TemplatedEmail();
+            $email->from($fromEmail)
             ->to($toEmail)
             ->subject('Nouvelle réservation')
-                ->text('Une nouvelle réservation a été effectuée pour la Corniche de la plage')
-                ->html("Vérifiez l application");
+            ->text('Une nouvelle réservation a été effectuée pour la Corniche de la plage')
+            ->htmlTemplate('email/rentalEmail.html.twig')
+            ->context([
+                'client' => $client
+            ]);
+            //$mailerInterface->send($email);
             $transport = Transport::fromDsn($_ENV['MAILER_DSN']);
             $mailer = new Mailer($transport);
             $mailer->send($email);
