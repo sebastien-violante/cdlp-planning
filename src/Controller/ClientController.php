@@ -36,7 +36,8 @@ class ClientController extends AbstractController
             ->from($fromEmail)
             ->to($toEmail)
             ->subject('Corniche de la plage : nouvelle réservation')
-            ->html('<h1>Hello !</h1>');
+            ->text('Une nouvelle réservation a été effectuée !')
+            ->html('<h1>Une nouvelle réservation a été effectuée !</h1>');
             $transport = Transport::fromDsn($_ENV['MAILER_DSN']);
             $mailer = new Mailer($transport);
             $mailer->send($email);
