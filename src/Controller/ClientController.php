@@ -4,17 +4,18 @@ namespace App\Controller;
 
 use App\Entity\Client;
 use App\Form\ClientType;
+use App\Services\MailerService;
 use Doctrine\ORM\EntityManager;
 use Symfony\Component\Mime\Email;
 use App\Repository\ClientRepository;
+use Symfony\Component\Mailer\Mailer;
 use Symfony\Component\Mailer\Transport;
 use Doctrine\ORM\EntityManagerInterface;
-use Symfony\Bridge\Twig\Mime\TemplatedEmail;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Mailer\MailerInterface;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\Mailer\MailerInterface;
 
 class ClientController extends AbstractController
 {
@@ -30,8 +31,20 @@ class ClientController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $client->setCleaned(false);
-            
-
+            $fromEmail = 'sebastien.violante@gmail.com';
+        $toEmail = 'sebastien.violante@gmail.com';
+        $email = (new Email())
+        ->from($fromEmail)
+        ->to($toEmail)
+        ->subject('Corniche de la plage : nouvelle réservation')
+        ->text('hello')
+        ->html('<h3>Salut mon service de mail</h3>');
+        //->context([
+        //'client' => $client,
+        //]);
+        $transport = Transport::fromDsn($_ENV['MAILER_DSN']);
+        $mailer = new Mailer($transport);
+        $mailer->send($email);
             // persisting new client
             $entityManagerInterface->persist($client);
             $entityManagerInterface->flush();
