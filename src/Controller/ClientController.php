@@ -14,6 +14,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Mailer\MailerInterface;
 
 class ClientController extends AbstractController
 {
@@ -21,6 +22,7 @@ class ClientController extends AbstractController
     public function addNewClient(
         Request $request,
         EntityManagerInterface $entityManagerInterface,
+        MailerInterface $mailer,
     ): Response {
         $client = new Client();
         $form = $this->createForm(ClientType::class, $client);
@@ -28,10 +30,9 @@ class ClientController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $client->setCleaned(false);
-            $entityManagerInterface->persist($client);
-            $entityManagerInterface->flush();
+            // sending email to advise household help
             $fromEmail = 'bastien.c@dev-uptoyou.fr';
-            $toEmail = 'bastien.c@dev-uptoyou.fr';
+            $toEmail = 'sebastien.violante@gmail.com';
             $email = (new Email())
             ->from($fromEmail)
             ->to($toEmail)
@@ -42,6 +43,10 @@ class ClientController extends AbstractController
             $mailer = new Mailer($transport);
             $mailer->send($email);
 
+            // persisting new client
+            $entityManagerInterface->persist($client);
+            $entityManagerInterface->flush();
+                     
         }
 
         return $this->render('client/index.html.twig', [
