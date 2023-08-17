@@ -37,28 +37,26 @@ class ClientController extends AbstractController
             $client->setGreen(rand(150,255));
             $client->setBlue(rand(150,255));
             // MAILING
-            $transport = Transport::fromDsn($_ENV['MAILER_DSN']);
+            //$transport = Transport::fromDsn($_ENV['MAILER_DSN']);
+            $transport = Transport::fromDsn($this->getParameter('MAILER_DSN'));
             $mailer = new Mailer($transport);
-            $toEmail = 'sebastien.violante@gmail.com';
-            
             $email = (new TemplatedEmail())
-            ->from(new Address('bastien.c@dev-uptoyou.fr', 'Appartement Bénodet'))
-            ->to($toEmail)
-            //->cc($ccEmail)
+            ->from(new Address($this->getParameter('MAIL_FROM'), 'Appartement Bénodet'))
+            ->to($this->getParameter('MAIL_MAID'))
+            ->cc($this->getParameter('MAIL_ADMIN'))
             ->subject('Corniche de la plage : nouvelle réservation')
             ->html('
-            <h3>Nouvelle réservation</h3>
-            <hr>
-            <p>L\'appartement de Bénodet vient d\'être réservé par <strong>'.$client->getFirstname().'</strong> du '.$client->getArrivalDate()->format('j l Y').' au '.$client->getDepartureDate()->format('j l Y').'.</p>
-            <p>Pensez à consulter le calendrier à l\'adresse : <i>https://cdlp.dev-uptoyou.fr</i></p>
+                <h3>Nouvelle réservation</h3>
+                <hr>
+                <p>L\'appartement de Bénodet vient d\'être réservé par <strong>'.$client->getFirstname().'</strong> du '.$client->getArrivalDate()->format('j l Y').' au '.$client->getDepartureDate()->format('j l Y').'.</p>
+                <p>Pensez à consulter le calendrier à l\'adresse : <i>https://cdlp.dev-uptoyou.fr</i></p>
             ')
+            //->htmlTemplate('emails/rentalEmail.html.twig')
             ;
-            
             $mailer->send($email);
             // persisting new client
             $entityManagerInterface->persist($client);
             $entityManagerInterface->flush();
-            
         }
 
         return $this->render('client/index.html.twig', [

@@ -4,7 +4,12 @@
 # Put parameters here that don't need to change on each machine where the app is deployed
 # https://symfony.com/doc/current/best_practices.html#use-parameters-for-application-configuration
 parameters:
-
+    MAILER_DSN: '%env(MAILER_DSN)%'
+    MAIL_FROM: '%env(MAIL_FROM)%'
+    MAIL_MAID: '%env(MAIL_MAID)%'
+    MAIL_OWNER: '%env(MAIL_OWNER)%'
+    MAIL_ADMIN: '%env(MAIL_ADMIN)%'
+    SITE_ADDR: '%env(SITE_ADDR)%'
 services:
     # default configuration for services in *this* file
     _defaults:

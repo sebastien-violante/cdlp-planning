@@ -29,6 +29,24 @@ class MailerService
         //$transport = Transport::fromDsn($_ENV['MAILER_DSN']);
         //$mailer = new Mailer($transport);
         $this->mailer->send($email);
+
+        $transport = Transport::fromDsn($_ENV['MAILER_DSN']);
+            $mailer = new Mailer($transport);
+            $toEmail = 'sebastien.violante@gmail.com';
+            
+            $email = (new TemplatedEmail())
+            ->from(new Address('bastien.c@dev-uptoyou.fr', 'Appartement Bénodet'))
+            ->to($toEmail)
+            //->cc($ccEmail)
+            ->subject('Corniche de la plage : nouvelle réservation')
+            ->html('
+                <h3>Nouvelle réservation</h3>
+                <hr>
+                <p>L\'appartement de Bénodet vient d\'être réservé par <strong>'.$client->getFirstname().'</strong> du '.$client->getArrivalDate()->format('j l Y').' au '.$client->getDepartureDate()->format('j l Y').'.</p>
+                <p>Pensez à consulter le calendrier à l\'adresse : <i>https://cdlp.dev-uptoyou.fr</i></p>
+            ')
+            ;
+            $mailer->send($email);
     }       
 }
 
