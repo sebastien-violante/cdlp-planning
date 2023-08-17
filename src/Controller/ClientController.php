@@ -33,6 +33,9 @@ class ClientController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $client->setCleaned(false);
+            $client->setRed(rand(150,255));
+            $client->setGreen(rand(150,255));
+            $client->setBlue(rand(150,255));
             // MAILING
             $transport = Transport::fromDsn($_ENV['MAILER_DSN']);
             $mailer = new Mailer($transport);

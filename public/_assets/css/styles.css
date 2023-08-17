@@ -43,3 +43,10 @@ body {
  .light {
     background-color:rgba(95, 158, 160, 0.8)
  }
+
+ .try {
+   width: 200px;
+   height: 200px;
+   margin: 2em;
+   border: 1px solid darkgrey;
+ }

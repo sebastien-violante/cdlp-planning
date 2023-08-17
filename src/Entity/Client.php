@@ -41,6 +41,15 @@ class Client
     #[ORM\Column]
     private ?bool $cleaned = null;
 
+    #[ORM\Column(type: Types::SMALLINT, nullable: true)]
+    private ?int $red = null;
+
+    #[ORM\Column(type: Types::SMALLINT, nullable: true)]
+    private ?int $green = null;
+
+    #[ORM\Column(type: Types::SMALLINT, nullable: true)]
+    private ?int $blue = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -150,6 +159,42 @@ class Client
     public function setCleaned(bool $cleaned): static
     {
         $this->cleaned = $cleaned;
+
+        return $this;
+    }
+
+    public function getRed(): ?int
+    {
+        return $this->red;
+    }
+
+    public function setRed(?int $red): static
+    {
+        $this->red = $red;
+
+        return $this;
+    }
+
+    public function getGreen(): ?int
+    {
+        return $this->green;
+    }
+
+    public function setGreen(?int $green): static
+    {
+        $this->green = $green;
+
+        return $this;
+    }
+
+    public function getBlue(): ?int
+    {
+        return $this->blue;
+    }
+
+    public function setBlue(?int $blue): static
+    {
+        $this->blue = $blue;
 
         return $this;
     }

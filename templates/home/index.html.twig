@@ -10,17 +10,18 @@
 
 
 <div class="example-wrapper">
+
 <h1 class="center mb-3">Liste des locations</h1>
 <hr>
     {% for client in clients %}
-        <div class="card my-2 relative box-shadow">
+        <div class="card my-2 relative box-shadow" style="background-color:rgb({{client.red}}, {{client.green}}, {{client.blue}})">
             <div class="card-header"><strong>{{ client.firstname }} {{ client.initial }}.</strong><a href="{{ path('app_delete', {'id': client.id }) }}" onclick="return confirm('Etes-vous sûr de supprimer ce client ?');"><img class="icon" src="{{ asset('_assets/pictures/bin.svg')}}"></a></div>
             <div class="position-absolute end-0 pe-2" style="line-height: 2.5em">
                 <img src="{{ asset('_assets/pictures/phone.svg')}}" class="icon">
                 {{ client.phoneNumber }} 
-                {# <a href ="tel:+33".{{ client.phoneNumber }}."">{{ client.phoneNumber }}</a>
-                {# <a href ="sms:+33".{{ client.phoneNumber }}."">{{ client.phoneNumber }}</a>
-            </div> #}
+                {# <a href ="tel:+33".{{ client.phoneNumber }}."">{{ client.phoneNumber }}</a> #}
+                {# <a href ="sms:+33".{{ client.phoneNumber }}."">{{ client.phoneNumber }}</a> #}
+            </div>
             <ul class="list-group list-group-flush">
                 <li class="list-group-item">du : {{ client.arrivalDate|date("d/m/Y à H:m") }}<br>
                 au : {{ client.departureDate|date("d/m/Y à H:m") }}</li>
