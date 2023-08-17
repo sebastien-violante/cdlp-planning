@@ -18,7 +18,9 @@
             <div class="position-absolute end-0 pe-2" style="line-height: 2.5em">
                 <img src="{{ asset('_assets/pictures/phone.svg')}}" class="icon">
                 {{ client.phoneNumber }} 
-            </div>
+                {# <a href ="tel:+33".{{ client.phoneNumber }}."">{{ client.phoneNumber }}</a>
+                {# <a href ="sms:+33".{{ client.phoneNumber }}."">{{ client.phoneNumber }}</a>
+            </div> #}
             <ul class="list-group list-group-flush">
                 <li class="list-group-item">du : {{ client.arrivalDate|date("d/m/Y à H:m") }}<br>
                 au : {{ client.departureDate|date("d/m/Y à H:m") }}</li>
