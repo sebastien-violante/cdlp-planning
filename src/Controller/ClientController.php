@@ -45,8 +45,8 @@ class ClientController extends AbstractController
                 <p>Pensez à consulter le calendrier à l\'adresse : <i>'.$this->getParameter('SITE_ADDR').'</i></p>
             '
             ;
-            $subject = 'nouvelle réservation';
-            $mailerService->sendEmail($this->getParameter('MAILER_DSN'), $this->getParameter('MAIL_FROM'), $this->getParameter('MAIL_MAID'),$this->getParameter('MAIL_ADMIN'), $content, $subject);
+            $subject = ' nouvelle réservation';
+            $mailerService->sendEmail($this->getParameter('MAILER_DSN'), $this->getParameter('MAIL_FROM'), $this->getParameter('MAIL_MAID'),$this->getParameter('MAIL_ADMIN'), $content, $subject, $client);
             // Persisting new client
             $entityManagerInterface->persist($client);
             $entityManagerInterface->flush();
@@ -59,9 +59,9 @@ class ClientController extends AbstractController
 
     #[Route('/delete/{id}', name: 'app_delete', methods: ['POST', 'GET'])]
     public function deleteClient(
-       ClientRepository $clientRepository,
-       EntityManagerInterface $entityManagerInterface,
-       int $id,
+        ClientRepository $clientRepository,
+        EntityManagerInterface $entityManagerInterface,
+        int $id,
     ): Response {
         $client = $clientRepository->findOneBy(['id' => $id]);
         $entityManagerInterface->remove($client);
@@ -72,15 +72,15 @@ class ClientController extends AbstractController
 
     #[Route('/cleaned/{id}', name: 'app_clean', methods: ['POST', 'GET'])]
     public function cleanedClient(
-       ClientRepository $clientRepository,
-       EntityManagerInterface $entityManagerInterface,
-       MailerService $mailerService,
-       int $id,
+        ClientRepository $clientRepository,
+        EntityManagerInterface $entityManagerInterface,
+        MailerService $mailerService,
+        int $id,
     ): Response {
         $client = $clientRepository->findOneBy(['id' => $id]);
         $client->setCleaned(true);
          // Mailing
-         $content = 
+        $content = 
             '
                 <h3>Départ effectué</h3>
                 <hr>
@@ -88,8 +88,8 @@ class ClientController extends AbstractController
                 <p>Pensez à consulter le calendrier à l\'adresse : <i>https://cdlp.dev-uptoyou.fr</i></p>
             '
             ;
-        $subject = 'départ du locataire';
-        $mailerService->sendEmail($this->getParameter('MAILER_DSN'), $this->getParameter('MAIL_FROM'), $this->getParameter('MAIL_MAID'),$this->getParameter('MAIL_ADMIN'), $content, $subject);
+        $subject = ' départ du locataire';
+        $mailerService->sendEmail($this->getParameter('MAILER_DSN'), $this->getParameter('MAIL_FROM'), $this->getParameter('MAIL_MAID'),$this->getParameter('MAIL_ADMIN'), $content, $subject, $client);
         $entityManagerInterface->persist($client);
         $entityManagerInterface->flush();
         

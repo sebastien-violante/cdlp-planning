@@ -1,11 +1,10 @@
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-    .ex { background: blue;}
-</style>
-
-<h3>Nouvelle réservation</h3>
-
-
-<p>Pensez à consulter régulièrement le calendrier des locations à l'adresse : xxxxx</p>
+<div class="p-3" style="background-color:lightblue; padding:1em; border-radius:0.5em">
+    <h3>Nouvelle réservation</h3>
+    <p><strong>{{ client.firstname}} {{ client.initial }}.</strong> vient de réserver l'appartement du 
+    <strong>{{ client.arrivalDate|date('j m Y')}}</strong> au
+    <strong>{{ client.departureDateDate|date('j m Y')}}</strong>
+    </p>
+    
+    <p>Pensez à consulter régulièrement le calendrier des locations à l'adresse : xxxxx</p>
+</div>
 
