@@ -1,10 +1,32 @@
-<div style="background-color:lightblue; padding:1em; border-radius:0.5em">
-    <h3>Nouvelle réservation</h3>
-    <p><strong>{{ client.firstname}} {{ client.initial }}.</strong> vient de réserver l'appartement du 
-    <strong>{{ client.arrivalDate|date('j m Y')}}</strong> au
-    <strong>{{ client.departureDateDate|date('j m Y')}}</strong>
-    </p>
-    
-    <p>Pensez à consulter régulièrement le calendrier des locations à l'adresse : xxxxx</p>
+<div style="
+    font-family: system-ui;
+    margin: 3em;"> 
+    <div style="
+        width:100%;
+        height: 3em;
+        font-family: system-ui;
+        text-align: center;
+        padding-top: 1em;
+        verticial-align: center;
+        color: white;
+        background: rgb(100,100,100);
+        border-top-left-radius: 0.5em;
+        border-top-right-radius: 0.5em;
+        box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px;">LA CORNICHE DE LA PLAGE
+    </div>
+    <div style="
+        background-color:lightblue;
+        padding-top:0.5em;
+        padding-left: 1em;
+        padding-right: 1em;
+        border-bottom-left-radius: 0.5em;
+        border-bottom-right-radius: 0.5em">
+        <h3>Nouvelle réservation !</h3>
+        <p><strong>{{ client.firstname}} {{ client.initial }}.</strong> vient de réserver l'appartement du 
+        <strong>{{ client.arrivalDate|date('j m Y')}}</strong> au
+        <strong>{{ client.departureDateDate|date('j m Y')}}</strong>
+        </p>
+        <p>Accéder au calendrier des locations : xxxxx</p>
+    </div>
 </div>
 
