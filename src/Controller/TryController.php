@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Repository\ClientRepository;
 use Twig\Environment;
 use Twig\Loader\FilesystemLoader;
 use Symfony\Component\Mime\Address;
@@ -18,32 +19,13 @@ class TryController extends AbstractController
 {
     #[Route('/try', name: 'app_try')]
     public function index(
-        MailerInterface $mailer
+        MailerInterface $mailer,
+        ClientRepository $clientRepository
     ): Response
     {
-        $transport = Transport::fromDsn($this->getParameter('MAILER_DSN'));
-        $mailer = new Mailer($transport);
-        
-        $email = (new TemplatedEmail())
-        ->from('sebastien.violante@gmail.com')
-        ->to(new Address('sebastien.violante@gmail.com'))
-        ->subject('Hello World')
-        ->htmlTemplate('try.html.twig')
-        ->context([]);
-
-        $loader = new FilesystemLoader('/home/sebastienviolante/SymfonyProjects/cdlp/templates/emails');
-
-        $twigEnv = new Environment($loader);
-
-        $twigBodyRenderer = new BodyRenderer($twigEnv);
-
-        $twigBodyRenderer->render($email);
-
-        $mailer->send($email);
-
-        
-        return $this->render('try/index.html.twig', [
-            'controller_name' => 'TryController',
+        $client = $clientRepository->findOneBy(['firstname' => 'Robert']);       
+        return $this->render('emails/try.html.twig', [
+            'client' => $client
         ]);
     }
 }

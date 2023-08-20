@@ -11,6 +11,11 @@ parameters:
     MAIL_ADMIN: '%env(MAIL_ADMIN)%'
     SITE_ADDR: '%env(SITE_ADDR)%'
 services:
+    twig.extension.intl:
+        class: Twig_Extensions_Extension_Intl
+        public: false
+        tags:
+            - { name: twig.extension }
     # default configuration for services in *this* file
     _defaults:
         autowire: true      # Automatically injects dependencies in your services.
