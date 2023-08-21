@@ -22,8 +22,8 @@
         border-bottom-right-radius: 0.5em">
         <h3>Nouvelle réservation</h3> 
         <p><strong>{{ client.firstname}} {{ client.initial }}.</strong> ( tel : {{ client.phoneNumber }}) vient de réserver l'appartement du 
-        <strong>{{ client.arrivalDate|format_date('full', '', null, 'gregorian', 'fr')}}</strong> au
-        <strong>{{ client.departureDateDate|date('j l Y') }}</strong>
+        <strong>{{ client.arrivalDate|date('d/m/Y', "Europe/Paris")}}</strong> au
+        <strong>{{ client.departureDate|date('d/m/Y', "Europe/Paris") }}</strong>
         </p>
         <p>Accéder au calendrier des locations : xxxxx</p>
     </div>
