@@ -15,20 +15,8 @@ class MailerService
 {
     public function __construct(private MailerInterface $mailer){}
     
-    public function sendEmail($dsn, $fromEmail, $toEmail, $ccEmail, $content, $subject, $client): void 
+    public function sendEmail($dsn, $fromEmail, $toEmail, $ccEmail, $subject, $title, $beginning, $middle, $end, $client, $site): void 
     {
-        /* $transport = Transport::fromDsn($dsn);
-        $mailer = new Mailer($transport);
-        $email = (new TemplatedEmail())
-            ->from(new Address($fromEmail, 'Appartement Bénodet'))
-            ->to($toEmail)
-            ->cc($ccEmail)
-            ->subject('Corniche de la plage : '.$subject)
-            ->html($content)
-            //->htmlTemplate('emails/rentalEmail.html.twig')
-            ;
-        $mailer->send($email); */
-
         $transport = Transport::fromDsn($dsn);
         $mailer = new Mailer($transport);
         $email = (new TemplatedEmail())
@@ -38,7 +26,13 @@ class MailerService
             ->subject('Corniche de la plage : '.$subject)
             ->htmlTemplate('try.html.twig')
             ->context([
-                'client' => $client
+                'client' => $client,
+                'subject' => $subject,
+                'title' => $title,
+                'beginning' => $beginning,
+                'middle' => $middle,
+                'end' => $end,
+                'site' => $site,
             ])
             ;
         $loader = new FilesystemLoader('/home/sebastienviolante/SymfonyProjects/cdlp/templates/emails');

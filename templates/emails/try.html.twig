@@ -1,31 +1,11 @@
-<div style="
-    font-family: system-ui;
-    margin: 3em;"> 
-    <div style="
-        width:100%;
-        font-family: system-ui;
-        text-align: center;
-        color: white;
-        background: rgb(60, 56, 55);
-        border-top-left-radius: 0.5em;
-        border-top-right-radius: 0.5em;
-        box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px;">
-        <h2>LA CORNICHE DE LA PLAGE</h2>
-    </div>
-    <div style="
-        background-color: rgb(239, 235, 235);
-        padding-top:0.5em;
-        padding-left: 1em;
-        padding-right: 1em;
-        padding-bottom:0.5em;
-        border-bottom-left-radius: 0.5em;
-        border-bottom-right-radius: 0.5em">
-        <h3>Nouvelle réservation</h3> 
-        <p><strong>{{ client.firstname}} {{ client.initial }}.</strong> ( tel : {{ client.phoneNumber }}) vient de réserver l'appartement du 
-        <strong>{{ client.arrivalDate|date('d/m/Y', "Europe/Paris")}}</strong> au
-        <strong>{{ client.departureDate|date('d/m/Y', "Europe/Paris") }}</strong>
-        </p>
-        <p>Accéder au calendrier des locations : xxxxx</p>
-    </div>
-</div>
 
+<div style="
+    color: darkgrey;
+    font-family: font-family: system-ui;"> 
+    <h2>Du nouveau dans l'appartement de Bénodet</h2>
+    <hr>
+    <h3>{{ title }}</h3> 
+    <p>{{ beginning }} <strong>{{ client.firstname}} {{ client.initial }}.</strong> ( tel : {{ client.phoneNumber }}) {{ middle }} du <strong>{{ client.arrivalDate|date('d/m/Y', "Europe/Paris")}}</strong> au
+    <strong>{{ client.departureDate|date('d/m/Y', "Europe/Paris") }}  </strong> {{ end }} </p>
+    <p>( Accéder au calendrier des locations : {{ site }})</p>
+</div>

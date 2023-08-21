@@ -37,16 +37,12 @@ class ClientController extends AbstractController
             $client->setGreen(rand(150,255));
             $client->setBlue(rand(150,255));
             // Mailing
-            $content = 
-            '
-                <h3>Nouvelle réservation</h3>
-                <hr>
-                <p>L\'appartement de Bénodet vient d\'être réservé par <strong>'.$client->getFirstname().'</strong> du '.$client->getArrivalDate()->format('j l Y').' au '.$client->getDepartureDate()->format('j l Y').'.</p>
-                <p>Pensez à consulter le calendrier à l\'adresse : <i>'.$this->getParameter('SITE_ADDR').'</i></p>
-            '
-            ;
-            $subject = ' nouvelle réservation';
-            $mailerService->sendEmail($this->getParameter('MAILER_DSN'), $this->getParameter('MAIL_FROM'), $this->getParameter('MAIL_MAID'),$this->getParameter('MAIL_ADMIN'), $content, $subject, $client);
+            $subject="nouvelle réservation";
+            $title="Nouvelle réservation";
+            $beginning="La réservation de";
+            $middle="pour la période";
+            $end="vient d'être ajoutée";
+            $mailerService->sendEmail($this->getParameter('MAILER_DSN'), $this->getParameter('MAIL_FROM'), $this->getParameter('MAIL_MAID'),$this->getParameter('MAIL_ADMIN'),$subject, $title, $beginning, $middle, $end, $client, $this->getParameter('SITE_ADDR'));
             // Persisting new client
             $entityManagerInterface->persist($client);
             $entityManagerInterface->flush();
@@ -80,17 +76,12 @@ class ClientController extends AbstractController
         $client = $clientRepository->findOneBy(['id' => $id]);
         $client->setCleaned(true);
          // Mailing
-        $content = 
-            '
-                <h3>Départ effectué</h3>
-                <hr>
-                <p>Le départ de <strong>'.$client->getFirstname().'</strong> vient d\'être effectué.</p>
-                <p>Pensez à consulter le calendrier à l\'adresse : <i>https://cdlp.dev-uptoyou.fr</i></p>
-            '
-            ;
-        $subject = ' départ du locataire';
-        $mailerService->sendEmail($this->getParameter('MAILER_DSN'), $this->getParameter('MAIL_FROM'), $this->getParameter('MAIL_MAID'),$this->getParameter('MAIL_ADMIN'), $content, $subject, $client);
-        $entityManagerInterface->persist($client);
+        $subject="départ effectué";
+        $title="Nouveau départ";
+        $beginning="Le départ de";
+        $middle="locataire";
+        $end="vient d'être effectué";
+        $mailerService->sendEmail($this->getParameter('MAILER_DSN'), $this->getParameter('MAIL_FROM'), $this->getParameter('MAIL_MAID'),$this->getParameter('MAIL_ADMIN'),$subject, $title, $beginning, $middle, $end, $client, $this->getParameter('SITE_ADDR'));
         $entityManagerInterface->flush();
         
         return $this->redirectToRoute('app_home');
