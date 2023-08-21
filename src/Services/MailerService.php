@@ -24,7 +24,7 @@ class MailerService
             ->to($toEmail)
             ->cc($ccEmail)
             ->subject('Corniche de la plage : '.$subject)
-            ->htmlTemplate('try.html.twig')
+            ->htmlTemplate('informationMail.html.twig')
             ->context([
                 'client' => $client,
                 'subject' => $subject,
