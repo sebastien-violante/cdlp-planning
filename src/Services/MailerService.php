@@ -35,7 +35,8 @@ class MailerService
                 'site' => $site,
             ])
             ;
-        $loader = new FilesystemLoader('/home/sebastienviolante/SymfonyProjects/cdlp/templates/emails');
+        //$loader = new FilesystemLoader('/home/sebastienviolante/SymfonyProjects/cdlp/templates/emails');
+        $loader = new FilesystemLoader('../templates/emails');
         $twigEnv = new Environment($loader);
         $twigBodyRenderer = new BodyRenderer($twigEnv);
         $twigBodyRenderer->render($email);
