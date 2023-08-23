@@ -8,6 +8,13 @@ body {
     justify-content: center;
 }
 
+.flex-menu {
+   display: flex;
+   flex-direction:row;
+   justify-content: flex-start;
+   align-items: center;
+}
+
 .vertical {
     flex-direction: column;
 }
