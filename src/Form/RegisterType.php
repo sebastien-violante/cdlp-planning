@@ -19,19 +19,19 @@ class RegisterType extends AbstractType
     {
         $builder
             ->add('pseudo', TextType::class, [
-                'label' => 'Votre prénom',
+                'label' => 'Pseudo',
             ])
             ->add('email', EmailType::class,[
-                'label' => 'Votre email'
+                'label' => 'Email'
             ])
             ->add('password', RepeatedType::class,[
                 'type' => PasswordType::class,
                 'invalid_message' => 'Les deux mots de passe ne correspondent pas.',
-                'first_options'  => ['label' => 'Votre mot de passe'],
-                'second_options' => ['label' => 'Confirmez votre mot de passe'],
+                'first_options'  => ['label' => 'Mot de passe'],
+                'second_options' => ['label' => 'Confirmer le mot de passe'],
             ])
             ->add('submit', SubmitType::class, [
-                'label' => "S'inscrire"
+                'label' => "Inscrire le nouvel utilisateur"
             ])
         ;
     }
