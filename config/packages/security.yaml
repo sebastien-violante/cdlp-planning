@@ -38,17 +38,13 @@ security:
     # Easy way to control access for large sections of your site
     # Note: Only the *first* access control that matches will be used
     role_hierarchy:
-        ROLE_ADM:       ROLE_AUTHOR
-        ROLE_AUTHOR:    ROLE_USER
+        ROLE_ADM:       ROLE_USER
 
     access_control:
-        
-        #- { path: '^/account', roles: ROLE_AUTHOR }
-        #- { path: '^/profile', roles: ROLE_AUTHOR }
-        #- { path: '^/contact/list', roles: ROLE_ADM }
-        #- { path: '^/contact/answer', roles: ROLE_ADM }
-        #- { path: '^/adm', roles: ROLE_ADM }
-
+        - { path: '^/home', roles: ROLE_USER }
+        - { path: '^/registration', roles: ROLE_ADMIN }
+        - { path: '^/client', roles: ROLE_ADM }
+    
 when@test:
     security:
         password_hashers:
