@@ -4,19 +4,31 @@ security:
         Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface: 'auto'
     # https://symfony.com/doc/current/security.html#loading-the-user-the-user-provider
     providers:
-        users_in_memory: { memory: null }
+        # used to reload user from session & other features (e.g. switch_user)
+        app_user_provider:
+            entity:
+                class: App\Entity\User
+                property: email
     firewalls:
         dev:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
             security: false
         main:
             lazy: true
-            provider: users_in_memory
+            provider: app_user_provider
             form_login:
                 # "app_login" is the name of the route created previously
                 login_path: app_login
                 check_path: app_login
                 enable_csrf: true
+            login_throttling:
+                max_attempts: 3          # per minute ...
+                interval: '15 minutes' # ... or in a custom period
+            logout:
+                path: app_logout
+                # where to redirect after logout
+                target: app_login
+
             # activate different ways to authenticate
             # https://symfony.com/doc/current/security.html#the-firewall
 
@@ -25,9 +37,17 @@ security:
 
     # Easy way to control access for large sections of your site
     # Note: Only the *first* access control that matches will be used
+    role_hierarchy:
+        ROLE_ADM:       ROLE_AUTHOR
+        ROLE_AUTHOR:    ROLE_USER
+
     access_control:
-        # - { path: ^/admin, roles: ROLE_ADMIN }
-        # - { path: ^/profile, roles: ROLE_USER }
+        
+        #- { path: '^/account', roles: ROLE_AUTHOR }
+        #- { path: '^/profile', roles: ROLE_AUTHOR }
+        #- { path: '^/contact/list', roles: ROLE_ADM }
+        #- { path: '^/contact/answer', roles: ROLE_ADM }
+        #- { path: '^/adm', roles: ROLE_ADM }
 
 when@test:
     security:
