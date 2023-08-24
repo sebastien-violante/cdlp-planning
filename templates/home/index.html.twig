@@ -16,10 +16,7 @@
     {% for client in clients %}
         <div class="card m-3 relative box-shadow" style="background-color: var(--car-header)">
             <div class="card-header" ><strong>{{ client.firstname }} {{ client.initial }}.</strong></div>
-                <pre>
-                    {{ dump(app.user) }}
-                </pre>
-                {% if app.user %}
+                {% if 'ROLE_ADM' in app.user.roles %}
                 <div class="position-absolute bottom-0 end-0 m-3" style="z-index:200"><a href="{{ path('app_delete', {'id': client.id }) }}" onclick="return confirm('Etes-vous sûr de supprimer ce client ?');"><img class="icon" src="{{ asset('_assets/pictures/bin.svg')}}"></a></div>
                 {% endif %}
             <div class="position-absolute end-0 pe-2" style="line-height: 2.5em">
