@@ -1,12 +1,12 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello RegistrationController!{% endblock %}
+{% block title %}{{ parent() }} | Nouvel utilisateur{% endblock %}
 
 {% block body %}
 
 
 <div class="example-wrapper">
-    <h1>Enregistrer un nouvel utilisateur</h1>
+    <h1 class="center mb-3">Enregistrer un nouvel utilisateur</h1>
     <form class="login-form mt-5 p-3" action="{{ path('app_login') }}" method="post">
         <div class="form-group mb-3">
             {{ form_row(form.pseudo, {'label': 'Pseudo'}) }}
@@ -17,4 +17,5 @@
         </div>
     </form>
 </div>
+
 {% endblock %}
