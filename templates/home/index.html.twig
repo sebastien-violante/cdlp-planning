@@ -3,43 +3,43 @@
 {% block title %}{{ parent() }} | Locations{% endblock %}
 
 {% block body %}
-
-
-
 <div class="example-wrapper">
-
-<h1 class="center mb-3">Liste des locations</h1>
+    <h1 class="center mb-3">Liste des locations</h1>
     {% for client in clients %}
-    <div class="card mb-3 box-shadow" style="max-width: 540px;">
-  <div class="row g-0">
-    <div class="col-md-4">
-      <img src="/_assets/pictures/silouhette.png" class="img-fluid rounded-start" alt="...">
-    </div>
-    <div class="col-md-8">
-      <div class="card-body">
-        <h5 class="card-title">{{ client.firstname }} {{ client.initial }}.</h5>
-        <p class="card-text"><img src="{{ asset('_assets/pictures/phone.svg')}}" class="icon">
-                {{ client.phoneNumber }} </p>
-        <p class="card-text">{{ client.arrivalDate|format_datetime('relative_long', 'none', locale='fr') }}
-                - {{ client.departureDate|format_datetime('relative_long', 'none', locale='fr') }}</small></p>
-                {% if client.message is null %}
-                {% else %}
-                <p class="card-text">
-                    <li style="background-color:rgb({{client.red}}, {{client.green}}, {{client.blue}}); color: red; text-align: center" class="list-group-item">{{ client.message}}</li>
-                </p>
-                {% endif %}
-                {% if client.cleaned == false %}
-                        <div class="flex">
-                            <form class="" method="POST" action="{{ path('app_clean', {'id': client.id }) }}">    
-                                <input class="btn btn-primary w-100" type="submit" value="Valider le départ">
-                            </form>
-                        </div>
-                    {% else %}
-                        <div class="alert alert-success center" role="alert">Départ validé</div>
-                    {% endif %}
-      </div>
-    </div>
-  </div>
+        <div class="card mb-3 mx-2 p-1 box-shadow" style="max-width: 540px;">
+            <div class="row g-0">
+                <div class="col-md-4">
+                    <img src="/_assets/pictures/silouhette.png" class="img-fluid rounded-start p-3" alt="...">
+                </div>
+                <div class="col-md-8">
+                    <div class="card-body">
+                        <h2 class="card-title">{{ client.firstname }} {{ client.initial }}.</h2>
+                        <hr>
+                        <p class="card-text">{{ client.arrivalDate|format_datetime('relative_long', 'none', locale='fr') }} - {{ client.departureDate|format_datetime('relative_long', 'none', locale='fr') }}</small></p>
+                        <p class="card-text">{{ client.adults }} {{ (client.adults > 1) ? 'adultes' : 'adulte' }} et {{ client.children }} {{ (client.children > 1) ? 'enfants' : 'enfant'  }}</p>
+                        <p class="card-text align-end"><img src="{{ asset('_assets/pictures/phone.svg')}}" class="icon">
+                                {{ client.phoneNumber }} </p>
+                        {% if client.message is null %}
+                        {% else %}
+                            <p class="card-text">
+                                <li style="background-color:rgb({{client.red}}, {{client.green}}, {{client.blue}}); color: red; text-align: center" class="list-group-item">{{ client.message}}</li>
+                            </p>
+                        {% endif %}
+                        {% if client.cleaned == false %}
+                            <div class="flex">
+                                <form class="" method="POST" action="{{ path('app_clean', {'id': client.id }) }}">    
+                                    <input class="btn btn-primary w-100" type="submit" value="Valider le départ">
+                                </form>
+                            </div>
+                        {% else %}
+                            <div class="alert alert-success center" role="alert">Départ validé</div>
+                        {% endif %}
+                        {% if 'ROLE_ADM' in app.user.roles %}
+                            <div class="position-absolute bottom-0 end-0 m-3" style="z-index:200"><a href="{{ path('app_delete', {'id': client.id }) }}" onclick="return confirm('Etes-vous sûr de supprimer ce client ?');"><img class="icon" src="{{ asset('_assets/pictures/bin.svg')}}"></a></div>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
 </div>
         <div class="card m-3 relative box-shadow" style="background-color: var(--card-header-color)">
             <div class="card-header" ><strong>{{ client.firstname }} {{ client.initial }}.</strong></div>
