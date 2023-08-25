@@ -14,7 +14,8 @@ class HomeController extends AbstractController
         ClientRepository $clientRepository,
     ): Response
     {
-        $clients = $clientRepository->findAll();
+        $clients = $clientRepository->findBySortedArrivalDate();
+        
         return $this->render('home/index.html.twig', [
             'clients' => $clients,
         ]);

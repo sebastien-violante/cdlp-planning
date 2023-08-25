@@ -21,20 +21,13 @@ class ClientRepository extends ServiceEntityRepository
         parent::__construct($registry, Client::class);
     }
 
-//    /**
-//     * @return Client[] Returns an array of Client objects
-//     */
-//    public function findByExampleField($value): array
-//    {
-//        return $this->createQueryBuilder('c')
-//            ->andWhere('c.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->orderBy('c.id', 'ASC')
-//            ->setMaxResults(10)
-//            ->getQuery()
-//            ->getResult()
-//        ;
-//    }
+    /**
+     * @return Client[] Returns an array of Client objects sorted by arrivalDate
+     */
+    public function findBySortedArrivalDate(): array
+    {
+        return $this->findBy(array(), array('arrivalDate' => 'ASC'));
+    }
 
 //    public function findOneBySomeField($value): ?Client
 //    {

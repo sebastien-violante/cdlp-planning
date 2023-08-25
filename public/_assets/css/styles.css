@@ -84,10 +84,28 @@ body {
    color: white !important;
 }
 
+.card {
+   padding: 0.5em !important;
+}
 .card-text {
    margin-bottom: 0.5em !important;
 }
 
+.card-body {
+   padding-top: 0.5em !important;
+   padding-bottom: 0.5em !important;
+}
+
 .align-end {
    text-align : end;
+}
+
+.alert {
+   padding-bottom: 0.5em !important;
+   padding-top: 0.5em !important;
+}
+
+.message {
+   text-align: center;
+   color: red;
 }
