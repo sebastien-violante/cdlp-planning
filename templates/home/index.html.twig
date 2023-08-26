@@ -17,8 +17,7 @@
                         <h2 class="card-title">{{ client.firstname }} {{ client.initial }}.</h2>
                         <hr>
                         <p class="card-text">Arrivée :   {{ client.arrivalDate|format_datetime('relative_long', 'none', locale='fr') }}<br>Départ   :   {{ client.departureDate|format_datetime('relative_long', 'none', locale='fr') }}</small></p>
-                        <p class="card-text">{{ client.adults }} {{ (client.adults > 1) ? 'adultes' : 'adulte' }} - {{ client.children }} {{ (client.children > 1) ? 'enfants' : 'enfant'  }}</p>
-                        
+                        {{ client.adults }} <img class="family-logo" src="{{ asset('_assets/pictures/adult.png') }}"> {{ client.children }} <img class="family-logo" src="{{ asset('_assets/pictures/children.png') }}">
                         <p class="card-text align-end"><img src="{{ asset('_assets/pictures/phone.svg')}}" class="icon">
                                 {{ client.phoneNumber }} </p>
                         {% if client.message is null %}

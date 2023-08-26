@@ -117,3 +117,8 @@ body {
 hr {
    margin: 0.5em 0 0.5em 0 !important;
 }
+
+.family-logo {
+   height: 50px;
+   margin-right: 2em;
+}
