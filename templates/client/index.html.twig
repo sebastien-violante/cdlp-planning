@@ -5,7 +5,47 @@
 {% block body %}
 <div class="example-wrapper">
     <h1 class="center mb-5">Ajouter un client</h1>
-
+    <form class="client-form mt-5 p-3" method="post">
+            <div class="form-group mb-3">
+                <label class="form-label" for="firstname">Prénom</label>
+                <input class="form-control" type="text" id="firstname" name="_firstname">
+            </div>
+            <div class="form-group mb-3">
+                <label class="form-label" for="initial">Initiale du nom</label>
+                <input class="form-control" type="text" id="initial" name="_initial">
+            </div>
+            <div class="form-group mb-3">
+                <label class="form-label" for="arrivalDate">Date d'arrivée</label>
+                <input class="form-control" type="datetime-local" min="2023-08-03" id="arrivalDate" name="_arrivalDate">
+            </div>
+            <input type="hidden" name="_target_path" value="{{ path('app_home') }}">
+            <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+            
+            <button class="btn btn-primary w-100 mt-3" type="submit">Connexion</button>
+    </form>
     {{form(clientForm)}}
 </div>
 {% endblock %}
+ {# ->add('firstname', TextType::class, [
+                "label" => "Prénom"])
+            ->add('initial',  TextType::class, [
+                "label" => "Nom (initiale)"])
+            ->add('arrivalDate', DateTimeType::class, [
+                "label" => "Date d'arrivée" ])
+            ->add('departureDate', DateTimeType::class, [
+                "label" => "Date de départ" ])
+            ->add('phoneNumber', TextType::class, [
+                "label" => "Numéro de téléphone" ] )
+            ->add('adults', IntegerType::class, [
+                "label" => "Nombre d'adultes" ])
+            ->add('children', IntegerType::class, [
+                "label" => "Nombre d'enfants" ])
+            ->add('message', TextareaType::class, [
+                "label" => "Particularités",
+                "required" => false ])
+            ->add("envoyer", SubmitType::class, [
+                "label" => "Enregistrer",
+                "attr" => [
+                    "class" => "btn btn-primary form-btn",
+                ]
+            ])  #}

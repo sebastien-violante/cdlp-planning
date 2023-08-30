@@ -21,9 +21,9 @@ security:
                 login_path: app_login
                 check_path: app_login
                 enable_csrf: true
-            login_throttling:
-                max_attempts: 3          # per minute ...
-                interval: '15 minutes' # ... or in a custom period
+            # login_throttling:
+                #max_attempts: 3          # per minute ...
+                #interval: '15 minutes' # ... or in a custom period
             logout:
                 path: app_logout
                 # where to redirect after logout
@@ -41,9 +41,9 @@ security:
         ROLE_ADM:       ROLE_USER
 
     access_control:
-        - { path: '^/home', roles: ROLE_USER }
-        - { path: '^/registration', roles: ROLE_ADM }
-        - { path: '^/client', roles: ROLE_ADM }
+        #- { path: '^/home', roles: ROLE_USER }
+        #- { path: '^/registration', roles: ROLE_ADM }
+        #- { path: '^/client', roles: ROLE_ADM }
     
 when@test:
     security:
