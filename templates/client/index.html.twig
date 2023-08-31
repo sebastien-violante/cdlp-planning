@@ -14,38 +14,37 @@
                 <label class="form-label" for="initial">Initiale du nom</label>
                 <input class="form-control" type="text" id="initial" name="_initial">
             </div>
+            <div class="form-group mb-3 flex">
+                <div class="w-50 p-1">
+                    <label class="form-label" for="departureDate">Date de départ</label>
+                    <input class="form-control" type="datetime-local" value="<?= date('Y-m-d') ?>" id="departureDate" name="_departureDate">
+                </div>
+                <div class="w-50 p-1">
+                    <label class="form-label" for="arrivalDate">Date d'arrivée</label>
+                    <input class="form-control" type="datetime-local" value="<?= date('Y-m-d') ?>" id="arrivalDate" name="_arrivalDate">
+                </div>
+            </div>
             <div class="form-group mb-3">
-                <label class="form-label" for="arrivalDate">Date d'arrivée</label>
-                <input class="form-control" type="datetime-local" min="2023-08-03" id="arrivalDate" name="_arrivalDate">
+                <label class="form-label" for="phoneNumber">Numéro de téléphone</label>
+                <input class="form-control" type="tel" id="phoneNumber" name="_phoneNumber">
+            </div>
+            <div class="form-group mb-3 flex">
+                <div class="w-50 p-1">
+                <label class="form-label" for="adults">Nombre d'adultes</label>
+                <input class="form-control" type="number"  id="adults" name="_adults">
+                </div>
+                <div class="w-50 p-1">
+                <label class="form-label" for="children">Nombre d'enfants</label>
+                <input class="form-control" type="number" id="children" name="_children">
+                </div>
+            </div>
+            <div class="form-group mb-3">
+                <label class="form-label" for="message">Particularités</label>
+                <input class="form-control" type="textarea" rows="2" id="message" name="_message">
             </div>
             <input type="hidden" name="_target_path" value="{{ path('app_home') }}">
             <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
-            
             <button class="btn btn-primary w-100 mt-3" type="submit">Connexion</button>
     </form>
-    {{form(clientForm)}}
 </div>
 {% endblock %}
- {# ->add('firstname', TextType::class, [
-                "label" => "Prénom"])
-            ->add('initial',  TextType::class, [
-                "label" => "Nom (initiale)"])
-            ->add('arrivalDate', DateTimeType::class, [
-                "label" => "Date d'arrivée" ])
-            ->add('departureDate', DateTimeType::class, [
-                "label" => "Date de départ" ])
-            ->add('phoneNumber', TextType::class, [
-                "label" => "Numéro de téléphone" ] )
-            ->add('adults', IntegerType::class, [
-                "label" => "Nombre d'adultes" ])
-            ->add('children', IntegerType::class, [
-                "label" => "Nombre d'enfants" ])
-            ->add('message', TextareaType::class, [
-                "label" => "Particularités",
-                "required" => false ])
-            ->add("envoyer", SubmitType::class, [
-                "label" => "Enregistrer",
-                "attr" => [
-                    "class" => "btn btn-primary form-btn",
-                ]
-            ])  #}
