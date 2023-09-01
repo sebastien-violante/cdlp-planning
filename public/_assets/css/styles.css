@@ -135,3 +135,9 @@ hr {
    height: 50px;
    margin-right: 2em;
 }
+
+.hello {
+   line-height:50px;
+   margin:0;
+   color: white;
+}
