@@ -28,6 +28,7 @@ class RegistrationController extends AbstractController
         $user = new User();
         $form = $this->createForm(RegisterType::class, $user);
         $form->handleRequest($request);
+        dd($form->getData());
         if($form->isSubmitted() && $form->isValid()) {
             $user= $form->getData();
             $hashedPassword = $hasher->hashPassword($user, $user->getPassword());
