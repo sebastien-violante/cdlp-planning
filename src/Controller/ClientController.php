@@ -30,9 +30,9 @@ class ClientController extends AbstractController
         $client = new Client();
         $form = $this->createForm(ClientType::class, $client);
         $form->handleRequest($request);
-
+        
         if ($form->isSubmitted() && $form->isValid()) {
-            dd($form->getData());
+            
             $client->setCleaned(false);
             $client->setRed(rand(150,255));
             $client->setGreen(rand(150,255));

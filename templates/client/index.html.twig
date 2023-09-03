@@ -6,7 +6,40 @@
 <div class="example-wrapper">
     <h1 class="center mb-5">Ajouter un client</h1>
     
-      <form class="client-form mt-5 p-3" method="post">
+    {{ form_start(clientForm) }}
+    <div class="my-custom-class-for-errors">
+        {{ form_errors(clientForm) }}
+    </div>
+
+    <div class="row">
+        <div class="col">
+            {{ form_row(clientForm.firstname) }}
+        </div>
+        <div class="col" id="some-custom-id">
+            {{ form_row(clientForm.initial) }}
+        </div>
+        <div class="col" id="some-custom-id">
+            {{ form_row(clientForm.arrivalDate) }}
+        </div>
+        <div class="col" id="some-custom-id">
+            {{ form_row(clientForm.departureDate) }}
+        </div>
+        <div class="col" id="some-custom-id">
+            {{ form_row(clientForm.phoneNumber) }}
+        </div>
+        <div class="col" id="some-custom-id">
+            {{ form_row(clientForm.adults) }}
+        </div>
+        <div class="col" id="some-custom-id">
+            {{ form_row(clientForm.children) }}
+        </div>
+        <div class="col" id="some-custom-id">
+            {{ form_row(clientForm.message) }}
+        </div>
+    </div>
+{{ form_end(clientForm) }}
+    {#
+      <form class="client-form mt-5 p-3" method="post" action="{{ path('app_home') }}" >
             <div class="form-group mb-3">
                 <label class="form-label" for="firstname">Prénom</label>
                 <input class="form-control" type="text" id="firstname" name="_firstname">
@@ -43,9 +76,7 @@
                 <label class="form-label" for="message">Particularités</label>
                 <input class="form-control" type="textarea" rows="2" id="message" name="_message">
             </div>
-            <input type="hidden" name="_target_path" value="{{ path('app_home') }}">
-            <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">   
             <button class="btn btn-primary w-100 mt-3" type="submit">Valider</button>
-    </form>
+    </form>  #}
 </div>
 {% endblock %}
