@@ -47,6 +47,8 @@ class ClientController extends AbstractController
             // Persisting new client
             $entityManagerInterface->persist($client);
             $entityManagerInterface->flush();
+
+            return $this->redirectToRoute('app_home');
         }
 
         return $this->render('client/index.html.twig', [
