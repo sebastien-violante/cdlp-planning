@@ -6,14 +6,27 @@
 <div class="example-wrapper">
     <h1 class="center mb-5">Ajouter un client</h1>
     {{ form_start(clientForm)}}
-        {{ form_row(clientForm.firstname)}}
-        {{ form_row(clientForm.initial)}}
-         {{ form_row(clientForm.phoneNumber)}}
+        <div class="flex">
+            <div class="two-third">
+                {{ form_row(clientForm.firstname)}}
+            </div>
+            <div class="one-third">
+                {{ form_row(clientForm.initial)}}
+            </div>
+        </div>
+        {{ form_row(clientForm.phoneNumber)}}
+        <div class="flex">
+        <div class="semi">
         {{ form_row(clientForm.arrivalDate)}}
+        </div>
+        <div class="semi">
         {{ form_row(clientForm.departureDate)}}
+        </div>
+        </div>
         {{ form_row(clientForm.adults)}}
         {{ form_row(clientForm.children)}}
         {{ form_row(clientForm.message)}}
+
 
     {{ form_end(clientForm)}}
     <form id="clientForm" class="client-form mt-5 p-3" method="post" action="{{ path('app_home') }}" >

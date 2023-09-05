@@ -31,6 +31,10 @@ class ClientController extends AbstractController
         $form = $this->createForm(ClientType::class, $client);
         $form->handleRequest($request);
         
+
+
+
+        
         if ($form->isSubmitted() && $form->isValid()) {
             
             $client->setCleaned(false);
@@ -84,7 +88,7 @@ class ClientController extends AbstractController
         $beginning="Le départ de";
         $middle="locataire";
         $end="vient d'être effectué";
-        $mailerService->sendEmail($this->getParameter('MAILER_DSN'), $this->getParameter('MAIL_FROM'), $this->getParameter('MAIL_MAID'),$this->getParameter('MAIL_ADMIN'),$subject, $title, $beginning, $middle, $end, $client, $this->getParameter('SITE_ADDR'));
+        $mailerService->sendEmail($this->getParameter('MAILER_DSN'), $this->getParameter('MAIL_FROM'), $this->getParameter('MAIL_OWNER'),$this->getParameter('MAIL_ADMIN'),$subject, $title, $beginning, $middle, $end, $client, $this->getParameter('SITE_ADDR'));
         $entityManagerInterface->flush();
         
         return $this->redirectToRoute('app_home');

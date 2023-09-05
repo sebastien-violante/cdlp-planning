@@ -6,6 +6,7 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
+    flex-wrap: wrap;
 }
 
 .flex-menu {
@@ -142,4 +143,20 @@ hr {
    line-height:50px;
    margin:0 2em 0 0;
    color: white;
+}
+
+.semi {
+   width: 50%;
+   padding: 1em;
+   min-width: 300px;
+}
+
+.one-third {
+   width: 33%;
+   padding: 0.2em;
+}
+
+.two-third {
+   width: 66%;
+   padding: 0.2em;
 }
