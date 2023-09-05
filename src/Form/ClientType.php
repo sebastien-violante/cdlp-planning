@@ -22,7 +22,7 @@ class ClientType extends AbstractType
             ->add('firstname', TextType::class, [
                 "label" => "Prénom"])
             ->add('initial',  TextType::class, [
-                "label" => "Nom (initiale)"])
+                "label" => "Nom"])
             ->add('arrivalDate', DateTimeType::class, [
                 "label" => "Date d'arrivée" ])
             ->add('departureDate', DateTimeType::class, [
@@ -39,7 +39,7 @@ class ClientType extends AbstractType
             ->add("envoyer", SubmitType::class, [
                 "label" => "Enregistrer",
                 "attr" => [
-                    "class" => "btn btn-primary form-btn",
+                    "class" => "btn btn-primary form-btn w-100",
                 ]
             ]) 
         ;

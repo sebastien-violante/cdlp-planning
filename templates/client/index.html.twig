@@ -5,68 +5,31 @@
 {% block body %}
 <div class="example-wrapper">
     <h1 class="center mb-5">Ajouter un client</h1>
-    {{ form_start(clientForm)}}
-        <div class="flex">
-            <div class="two-third">
-                {{ form_row(clientForm.firstname)}}
+    <div class="client-form mt-5 p-3">
+        {{ form_start(clientForm)}}
+            <div class="flex">
+                <div class="two-third">
+                    {{ form_row(clientForm.firstname)}}
+                </div>
+                <div class="one-third">
+                    {{ form_row(clientForm.initial)}}
+                </div>
             </div>
-            <div class="one-third">
-                {{ form_row(clientForm.initial)}}
+            {{ form_row(clientForm.phoneNumber)}}
+            <div class="flex">
+            <div class="semi">
+            {{ form_row(clientForm.arrivalDate)}}
             </div>
-        </div>
-        {{ form_row(clientForm.phoneNumber)}}
-        <div class="flex">
-        <div class="semi">
-        {{ form_row(clientForm.arrivalDate)}}
-        </div>
-        <div class="semi">
-        {{ form_row(clientForm.departureDate)}}
-        </div>
-        </div>
-        {{ form_row(clientForm.adults)}}
-        {{ form_row(clientForm.children)}}
-        {{ form_row(clientForm.message)}}
+            <div class="semi">
+            {{ form_row(clientForm.departureDate)}}
+            </div>
+            </div>
+            {{ form_row(clientForm.adults)}}
+            {{ form_row(clientForm.children)}}
+            {{ form_row(clientForm.message)}}
+        {{ form_end(clientForm)}}
+    </div>
 
-
-    {{ form_end(clientForm)}}
-    <form id="clientForm" class="client-form mt-5 p-3" method="post" action="{{ path('app_home') }}" >
-            <div class="form-group mb-3">
-                <label class="form-label" for="firstname">Prénom</label>
-                <input class="form-control" type="text" id="firstname" name="_firstname">
-            </div>
-            <div class="form-group mb-3">
-                <label class="form-label" for="initial">Initiale du nom</label>
-                <input class="form-control" type="text" id="initial" name="_initial">
-            </div>
-            <div class="form-group mb-3 flex">
-                <div class="w-50 p-1">
-                    <label class="form-label" for="departureDate">Date de départ</label>
-                    <input class="form-control" type="datetime-local" value="<?= date('Y-m-d') ?>" id="departureDate" name="_departureDate">
-                </div>
-                <div class="w-50 p-1">
-                    <label class="form-label" for="arrivalDate">Date d'arrivée</label>
-                    <input class="form-control" type="datetime-local" value="<?= date('Y-m-d') ?>" id="arrivalDate" name="_arrivalDate">
-                </div>
-            </div>
-            <div class="form-group mb-3">
-                <label class="form-label" for="phoneNumber">Numéro de téléphone</label>
-                <input class="form-control" type="tel" id="phoneNumber" name="_phoneNumber">
-            </div>
-            <div class="form-group mb-3 flex">
-                <div class="w-50 p-1">
-                <label class="form-label" for="adults">Nombre d'adultes</label>
-                <input class="form-control" type="number"  id="adults" name="_adults">
-                </div>
-                <div class="w-50 p-1">
-                <label class="form-label" for="children">Nombre d'enfants</label>
-                <input class="form-control" type="number" id="children" name="_children">
-                </div>
-            </div>
-            <div class="form-group mb-3">
-                <label class="form-label" for="message">Particularités</label>
-                <input class="form-control" type="textarea" rows="2" id="message" name="_message">
-            </div>
-            <button class="btn btn-primary w-100 mt-3" type="submit">Valider</button>
-    </form> 
+    
 </div>
 {% endblock %}
