@@ -3,13 +3,10 @@
 {% block title %}{{ parent() }} | Nouvel utilisateur{% endblock %}
 
 {% block body %}
-
-
-<div class="example-wrapper">
-    <h1 class="center mb-5">Ajouter un utilisateur</h1>
-    <form class="client-form mt-5 p-3" method="post">
-    {{ form(formRegister)}} 
-    </form>
-</div>
-
+    <div class="example-wrapper">
+        <h1 class="center mb-5">Ajouter un utilisateur</h1>
+        <form class="client-form mt-5 p-3" method="post">
+            {{ form(formRegister)}} 
+        </form>
+    </div>
 {% endblock %}

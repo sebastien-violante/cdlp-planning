@@ -1,67 +1,43 @@
 body {
-    background-color: var(--background-color);
+   background-color: var(--background-color);
 }
 
-.flex {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-wrap: wrap;
+.align-end {
+   text-align : end;
 }
 
-.flex-menu {
-   display: flex;
-   flex-direction:row;
-   justify-content: flex-start;
-   align-items: center;
+.alert {
+   padding-bottom: 0.5em !important;
+   padding-top: 0.5em !important;
 }
 
-.vertical {
-    flex-direction: column;
-}
-
-.top {
-    padding-top: 100px;
- }
-
- .icon {
-    height: 25px;
-    margin-left: 0.5em;
-    margin-right: 0.5em;
- }
-
- .box-shadow {
+.box-shadow {
    box-shadow: rgba(17, 17, 26, 0.1) 0px 4px 16px, rgba(17, 17, 26, 0.1) 0px 8px 24px, rgba(17, 17, 26, 0.1) 0px 16px 56px;
- }
+}
 
- .center {
-    text-align: center;
-    margin-bottom: 0px;
- }
+.brand {
+   height: 50px;
+   margin-left: 2em;
+   margin-right: 2em;
+}
 
-.light {
-   background-color: var(--nav-color);
-   border-bottom-right-radius: 2em;
-   box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
-   }
-
-.email-message {
-   width: 100%;
-   height: 5em;
-   background-color: blueviolet;
+.card {
+   padding: 0.5em !important;
    border-radius: 1em;
 }
 
-.login-form {
-   background-color: var(--form-color);
-   border: 1px solid rgb(226, 223, 223);
-   min-width: 300px;
-   padding: 2em;
-   border-radius:0.5em;
-   margin: auto;
-   margin-top: 4em;
-   box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
-   color: var(--form-color-text);
+.card-body {
+   padding-top: 0.5em !important;
+   padding-bottom: 0.5em !important;
+}
+
+.card-text {
+   margin-bottom: 0.5em !important;
+}
+
+.center {
+   text-align: center;
+   margin-bottom: 0px;
 }
 
 .client-form {
@@ -76,10 +52,11 @@ body {
    color: darkslategrey;
 }
 
-.brand {
-   height: 50px;
-   margin-left: 2em;
-   margin-right: 2em;
+.email-message {
+   width: 100%;
+   height: 5em;
+   background-color: blueviolet;
+   border-radius: 1em;
 }
 
 .example-wrapper { 
@@ -94,49 +71,23 @@ body {
       padding: 2px 6px; 
 }
 
-.nav-link {
-   color: white !important;
-}
-
-.card {
-   padding: 0.5em !important;
-   border-radius: 1em;
-}
-.card-text {
-   margin-bottom: 0.5em !important;
-}
-
-.card-body {
-   padding-top: 0.5em !important;
-   padding-bottom: 0.5em !important;
-}
-
-.align-end {
-   text-align : end;
-}
-
-.alert {
-   padding-bottom: 0.5em !important;
-   padding-top: 0.5em !important;
-}
-
-.message {
-   text-align: center;
-   color: red;
-}
-
-.img-fluid {
-   padding: 1em;
-   width: 80%;
-}
-
-hr {
-   margin: 0.5em 0 0.5em 0 !important;
-}
-
 .family-logo {
    height: 50px;
    margin-right: 2em;
+}
+
+.flex {
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   flex-wrap: wrap;
+}
+
+.flex-menu {
+   display: flex;
+   flex-direction:row;
+   justify-content: flex-start;
+   align-items: center;
 }
 
 .hello {
@@ -145,10 +96,45 @@ hr {
    color: white;
 }
 
-.semi {
-   width: 50%;
+hr {
+   margin: 0.5em 0 0.5em 0 !important;
+}
+.icon {
+   height: 25px;
+   margin-left: 0.5em;
+   margin-right: 0.5em;
+}
+
+.img-fluid {
    padding: 1em;
+   width: 80%;
+}
+
+.light {
+   background-color: var(--nav-color);
+   border-bottom-right-radius: 2em;
+   box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
+}
+
+.login-form {
+   background-color: var(--form-color);
+   border: 1px solid rgb(226, 223, 223);
    min-width: 300px;
+   padding: 2em;
+   border-radius:0.5em;
+   margin: auto;
+   margin-top: 4em;
+   box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
+   color: var(--form-color-text);
+}
+
+.message {
+   text-align: center;
+   color: red;
+}
+
+.nav-link {
+   color: white !important;
 }
 
 .one-third {
@@ -156,7 +142,21 @@ hr {
    padding: 0.2em;
 }
 
+.semi {
+   width: 50%;
+   padding: 1em;
+   min-width: 300px;
+}
+
+.top {
+   padding-top: 100px;
+}
+
 .two-third {
    width: 60%;
    padding: 0.2em;
+}
+
+.vertical {
+   flex-direction: column;
 }

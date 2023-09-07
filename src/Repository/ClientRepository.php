@@ -28,14 +28,4 @@ class ClientRepository extends ServiceEntityRepository
     {
         return $this->findBy(array(), array('arrivalDate' => 'ASC'));
     }
-
-//    public function findOneBySomeField($value): ?Client
-//    {
-//        return $this->createQueryBuilder('c')
-//            ->andWhere('c.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->getQuery()
-//            ->getOneOrNullResult()
-//        ;
-//    }
 }

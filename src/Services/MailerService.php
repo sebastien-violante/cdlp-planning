@@ -11,10 +11,29 @@ use Symfony\Bridge\Twig\Mime\BodyRenderer;
 use Symfony\Bridge\Twig\Mime\TemplatedEmail;
 use Symfony\Component\Mailer\MailerInterface;
 
+/**
+ * class MailerService allows to generate an email whith the same format when a new client is registered or when a departure is validated. It depends on the given parameters
+ */
 class MailerService 
 {
     public function __construct(private MailerInterface $mailer){}
     
+    /**
+     * The function sendEmail allows to send a mail, depending on adresses, subject, title...It uses a specific template in templates/emails directory
+     *
+     * @param string $dsn
+     * @param string $fromEmail
+     * @param string $toEmail
+     * @param string $ccEmail
+     * @param string $subject
+     * @param string $title
+     * @param string $beginning
+     * @param string $middle
+     * @param string $end
+     * @param string $client
+     * @param string $site
+     * @return void
+     */
     public function sendEmail($dsn, $fromEmail, $toEmail, $ccEmail, $subject, $title, $beginning, $middle, $end, $client, $site): void 
     {
         $transport = Transport::fromDsn($dsn);
@@ -35,7 +54,6 @@ class MailerService
                 'site' => $site,
             ])
             ;
-        //$loader = new FilesystemLoader('/home/sebastienviolante/SymfonyProjects/cdlp/templates/emails');
         $loader = new FilesystemLoader('../templates/emails');
         $twigEnv = new Environment($loader);
         $twigBodyRenderer = new BodyRenderer($twigEnv);

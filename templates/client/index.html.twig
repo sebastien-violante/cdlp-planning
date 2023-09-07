@@ -17,19 +17,17 @@
             </div>
             {{ form_row(clientForm.phoneNumber)}}
             <div class="flex">
-            <div class="semi">
-            {{ form_row(clientForm.arrivalDate)}}
-            </div>
-            <div class="semi">
-            {{ form_row(clientForm.departureDate)}}
-            </div>
+                <div class="semi">
+                    {{ form_row(clientForm.arrivalDate)}}
+                </div>
+                <div class="semi">
+                    {{ form_row(clientForm.departureDate)}}
+                </div>
             </div>
             {{ form_row(clientForm.adults)}}
             {{ form_row(clientForm.children)}}
             {{ form_row(clientForm.message)}}
         {{ form_end(clientForm)}}
     </div>
-
-    
 </div>
 {% endblock %}

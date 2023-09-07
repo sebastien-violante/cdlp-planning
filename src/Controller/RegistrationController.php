@@ -11,6 +11,9 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 
+/**
+ * class RegistrationController allows to register a new user and to give him a role
+ */
 class RegistrationController extends AbstractController
 {
     private $entityManager;
@@ -19,8 +22,15 @@ class RegistrationController extends AbstractController
         $this->entityManager= $entityManager;
     }
     
+    /**
+     * function register allows to register a user, based on several details and to give him a role (chosen with the form). It's granted to adm role only
+     *
+     * @param Request $request
+     * @param UserPasswordHasherInterface $hasher
+     * @return Response
+     */
     #[Route('/registration', name: 'app_registration')]
-    public function index(
+    public function register(
         Request $request,
         UserPasswordHasherInterface $hasher,
     ): Response
