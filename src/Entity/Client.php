@@ -39,7 +39,7 @@ class Client
     private ?string $message = null;
 
     #[ORM\Column]
-    private ?bool $cleaned = null;
+    private ?bool $cleaned = false;
 
     #[ORM\Column(type: Types::SMALLINT, nullable: true)]
     private ?int $red = null;
