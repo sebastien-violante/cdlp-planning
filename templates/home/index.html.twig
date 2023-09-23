@@ -22,7 +22,7 @@
                         {% if client.message is null %}
                         {% else %}
                             <p class="card-text">
-                                <li style="background-color:rgb({{client.red}}, {{client.green}}, {{client.blue}}); color: red; text-align: center" class="list-group-item">{{ client.message}}</li>
+                                <li style="border-radius:0.3em; background-color:rgb({{client.red}}, {{client.green}}, {{client.blue}}); color: red; text-align: center" class="list-group-item">{{ client.message}}</li>
                             </p>
                         {% endif %}
                         {% if client.cleaned == false %}
