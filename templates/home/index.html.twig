@@ -15,7 +15,10 @@
                     <div class="card-body">
                         <h2 class="card-title">{{ client.firstname }} {{ client.initial }}.</h2>
                         <hr>
-                        <p class="card-text">{{ client.arrivalDate|format_datetime('relative_long', 'none', locale='fr') }}<br>{{ client.departureDate|format_datetime('relative_long', 'none', locale='fr') }}</small></p>
+                        <p class="card-text">{{ client.arrivalDate|format_datetime('relative_long', 'none', locale='fr') }} <i>({% set difference = date(client.arrivalDate).diff(dateNow).format('%d') %}{{ difference }} jours)</i>
+                        <br>
+                        {{ client.departureDate|format_datetime('relative_long', 'none', locale='fr') }}</small>
+                        </p>
                         <p style="font-size: 20px; margin:0">{{ client.adults }} <img class="family-logo" src="{{ asset('_assets/pictures/adult.png') }}"> {{ client.children }} <img class="family-logo" src="{{ asset('_assets/pictures/children.png') }}"></p>
                         <p class="card-text align-end"><img src="{{ asset('_assets/pictures/phone.svg')}}" class="icon">
                                 {{ client.phoneNumber }} </p>
