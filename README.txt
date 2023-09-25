@@ -33,3 +33,8 @@ the Bêta version 1.0 has been deployed in september,2023
 ## Author
 
 - Sébastien Violante
+
+########################### MEMO FOR FURTHER USES #####################
+The delay between now and the client's arrivalDate or departureDate needs to create a customed function with Twig.
+To do that :
+- run bin/console make:twig-extention and call it eg AppExtension
