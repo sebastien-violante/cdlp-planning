@@ -35,6 +35,11 @@ the Bêta version 1.0 has been deployed in september,2023
 - Sébastien Violante
 
 ########################### MEMO FOR FURTHER USES #####################
-The delay between now and the client's arrivalDate or departureDate needs to create a customed function with Twig.
+The delay between now and the client's arrivalDate needs to create a customed function with Twig.
 To do that :
 - run bin/console make:twig-extention and call it eg AppExtension
+- modify :
+    - modify AppExtension in Extention directory to call the function. Be carefull, modify the alias and the function namespace
+    - define the function behavior in AppExtensionRuntime
+- use the function in a template just by calling it (eg : {{ myFunction(myParameter) }})
+
