@@ -34,6 +34,14 @@ the Bêta version 1.0 has been deployed in september,2023
 
 - Sébastien Violante
 
+########################### VERSIONS ##################################
+1.0 : 2023.09.05
+Initial version
+
+1.1 : 2023.09.25
+Add delay calculation between now and the client's arrivalDate and display it on the client's card
+Add the version number in the header
+
 ########################### MEMO FOR FURTHER USES #####################
 The delay between now and the client's arrivalDate needs to create a customed function with Twig.
 To do that :
