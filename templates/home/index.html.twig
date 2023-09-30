@@ -17,7 +17,7 @@
                         <hr>
                         <p class="card-text">{{ client.arrivalDate|format_datetime('relative_long', 'none', locale='fr') }} 
                         {% if daysBetweenTwoDates(client.arrivalDate) %}
-                            / ⏰ {{ daysBetweenTwoDates(client.arrivalDate)}} {{ (daysBetweenTwoDates(client.arrivalDate) == 1 ? 'jour' : 'jours') }}
+                           (⏰ {{ daysBetweenTwoDates(client.arrivalDate)}} {{ (daysBetweenTwoDates(client.arrivalDate) == 1 ? 'jour' : 'jours') }})
                         {% endif %}
                         <br>
                         {{ client.departureDate|format_datetime('relative_long', 'none', locale='fr') }}</small>

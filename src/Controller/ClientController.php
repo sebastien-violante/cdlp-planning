@@ -78,13 +78,15 @@ class ClientController extends AbstractController
         $client = $clientRepository->findOneBy(['id' => $id]);
         $entityManagerInterface->remove($client);
         $entityManagerInterface->flush();
-        // A mail is send to the owner to indicate that the rental is canceled
-        $subject = "annulation de réservation";
-        $title = "Séjour annulé";
-        $beginning = "Le séjour de";
-        $middle = "locataire";
-        $end = "vient d'être annulé";
-        $mailerService->sendEmail($this->getParameter('MAILER_DSN'), $this->getParameter('MAIL_FROM'), $this->getParameter('MAIL_MAID'), $this->getParameter('MAIL_ADMIN'), $subject, $title, $beginning, $middle, $end, $client, $this->getParameter('SITE_ADDR'));
+        if($client->isCleaned() == false) {
+             // A mail is send to the owner to indicate that the rental is canceled before it's arrival
+            $subject = "annulation de réservation";
+            $title = "Séjour annulé";
+            $beginning = "Le séjour de";
+            $middle = "locataire";
+            $end = "vient d'être annulé";
+            $mailerService->sendEmail($this->getParameter('MAILER_DSN'), $this->getParameter('MAIL_FROM'), $this->getParameter('MAIL_MAID'), $this->getParameter('MAIL_ADMIN'), $subject, $title, $beginning, $middle, $end, $client, $this->getParameter('SITE_ADDR'));
+        }
         
         return $this->redirectToRoute('app_home');
     }

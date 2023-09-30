@@ -38,9 +38,10 @@ the Bêta version 1.0 has been deployed in september,2023
 1.0 : 2023.09.05
 Initial version
 
-1.1 : 2023.09.25
-Add delay calculation between now and the client's arrivalDate and display it on the client's card
-Add the version number in the header
+1.1 : 2023.09.29
+- Add delay calculation between now and the client's arrivalDate and display it on the client's card
+- Add an item in the header about versionning and technical stack
+- Add an if statement to prevent from sending a mail when a client is deleted after it's rental. A mail is send only if the deletion occurs before the rental
 
 ########################### MEMO FOR FURTHER USES #####################
 The delay between now and the client's arrivalDate needs to create a customed function with Twig.
