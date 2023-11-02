@@ -1,0 +1,21 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ parent() }} | Nouvelle indisponibilité{% endblock %}
+
+{% block body %}
+<div class="example-wrapper">
+    <h1 class="center mb-5">Ajouter une indisponibilité</h1>
+    <div class="client-form mt-5 p-3">
+        {{ form_start(clientForm)}}
+            <div class="flex">
+                <div class="semi">
+                    {{ form_row(clientForm.arrivalDate)}}
+                </div>
+                <div class="semi">
+                    {{ form_row(clientForm.departureDate)}}
+                </div>
+            </div>
+        {{ form_end(clientForm)}}
+    </div>
+</div>
+{% endblock %}

@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Client;
 use App\Form\ClientType;
+use App\Form\UnaviabilityType;
 use App\Services\MailerService;
 use App\Repository\ClientRepository;
 use Doctrine\ORM\EntityManagerInterface;
@@ -56,6 +57,39 @@ class ClientController extends AbstractController
         }
 
         return $this->render('client/index.html.twig', [
+            'clientForm' => $form->createView(),
+        ]);
+    }
+
+    /**
+     * function AddNewClient allows to add a new customer by entering his reservation details. It also generates an e-mail
+     *
+     * @param Request $request
+     * @param EntityManagerInterface $entityManagerInterface
+     * @param MailerService $mailerService
+     * @return Response
+     */
+    #[Route('/indisponibilité', name: 'app_unaviability')]
+    public function addNewUnavialability(
+        Request $request,
+        EntityManagerInterface $entityManagerInterface,
+    ): Response {
+        $client = new Client();
+        $form = $this->createForm(UnaviabilityType::class, $client);
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            // By default, the parameter cleaned is false to indicate that his departure hasn't been done yet
+            $client->setCleaned(false);
+            $client->setFirstname("Housemaid");
+            $client->setInitial("X");
+            // Once the mail is send, the new client is persisted in database
+            $entityManagerInterface->persist($client);
+            $entityManagerInterface->flush();
+            // Once the client is persisted, the user is redirected to the home page to the rent list
+            return $this->redirectToRoute('app_home');
+        }
+
+        return $this->render('client/unaviability.html.twig', [
             'clientForm' => $form->createView(),
         ]);
     }
