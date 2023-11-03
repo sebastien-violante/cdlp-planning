@@ -125,6 +125,23 @@ class ClientController extends AbstractController
         return $this->redirectToRoute('app_home');
     }
 
+    #[Route('/notifié/{id}', name: 'app_noticed', methods: ['POST', 'GET'])]
+    public function setNoticed (
+        ClientRepository $clientRepository,
+        EntityManagerInterface $entityManagerInterface,
+        int $id,
+    ): Response {
+        $client = $clientRepository->findOneBy(['id' => $id]);
+        $client->setNoticed(1);
+        $entityManagerInterface->persist($client);
+        $entityManagerInterface->flush();
+        return $this->json([
+            'code' => 200,
+            'message' => "mise à jour effectuée",
+            'status' => 1], 200);
+    }
+
+
     /**
      * function cleanedClient allows to indicate the departure of a client. A mail is generated to warn the owner immediatly
      * @param int $id

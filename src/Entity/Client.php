@@ -50,6 +50,9 @@ class Client
     #[ORM\Column(type: Types::SMALLINT, nullable: true)]
     private ?int $blue = null;
 
+    #[ORM\Column]
+    private ?bool $noticed = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -195,6 +198,18 @@ class Client
     public function setBlue(?int $blue): static
     {
         $this->blue = $blue;
+
+        return $this;
+    }
+
+    public function isNoticed(): ?bool
+    {
+        return $this->noticed;
+    }
+
+    public function setNoticed(bool $noticed): static
+    {
+        $this->noticed = $noticed;
 
         return $this;
     }
