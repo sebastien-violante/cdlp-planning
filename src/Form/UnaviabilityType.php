@@ -7,6 +7,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 
 class UnaviabilityType extends AbstractType
 {
@@ -17,7 +18,16 @@ class UnaviabilityType extends AbstractType
                 'label' => 'Date de début',
                 'format' => 'ddMMyyyy'
             ])
-            ->add('departureDate')
+            ->add('departureDate', DateType::class, [
+                'label' => 'Date de fin',
+                'format' => 'ddMMyyyy'
+            ])
+            ->add('submit', SubmitType::class, [
+                'label' => "Ajouter l'indisponibilité",
+                "attr" => [
+                    "class" => "btn btn-primary form-btn w-100",
+                ]
+            ])
         ;
     }
 
