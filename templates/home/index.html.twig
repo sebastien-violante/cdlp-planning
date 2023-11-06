@@ -16,18 +16,15 @@
                     <div class="col-md-8">
                         <div class="card-body">
                             <h2 class="card-title">{{ client.firstname }} {{ client.initial }}.</h2>
+                            <a>
                             {% if client.noticed %}
-                            <img class="notice" style="height:30px; position:relative; top:0; end:0" src="/_assets/pictures/full-document.png">
+                            
+                            <i class="fa fa-file-text"></i>
                             {% else %}
-                            <img style="height:30px; position:absolute; top:20px; right:20px" src="/_assets/pictures/empty-document.png">    
+                            
+                               <i class="fa fa-file-text"></i>
                             {% endif %}
-                            <a class="heart" href="{{ path('app_update_watchlist', {id: product.id} )}}">
-                                                            {% if(app.user in product.users) %}
-                                                                <i class="bi bi-heart-fill me-2"></i>
-                                                            {% else %}
-                                                                <i class="bi bi-heart me-2"></i>
-                                                            {% endif %}
-                                                            </a>
+                            </a>
                             <hr>
                             <p class="card-text">{{ client.arrivalDate|format_datetime('relative_long', 'none', locale='fr') }} 
                             {% if daysBetweenTwoDates(client.arrivalDate) %}
