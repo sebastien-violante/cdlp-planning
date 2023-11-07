@@ -125,6 +125,13 @@ class ClientController extends AbstractController
         return $this->redirectToRoute('app_home');
     }
 
+    /**
+     * function setNoticed allows to indicate when a client has been sent the arrival documents
+     * @param int $id
+     * @param EntityManagerInterface $entityManagerInterface
+     * @param ClientRepository $clientRepository
+     * @return Response
+     */
     #[Route('/notifié/{id}', name: 'app_noticed', methods: ['POST', 'GET'])]
     public function setNoticed (
         ClientRepository $clientRepository,
