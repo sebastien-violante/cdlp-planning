@@ -14,10 +14,12 @@ use Symfony\Component\Mailer\MailerInterface;
 /**
  * class MailerService allows to generate an email whith the same format when a new client is registered or when a departure is validated. It depends on the given parameters
  */
-class MailerService 
+class MailerService
 {
-    public function __construct(private MailerInterface $mailer){}
-    
+    public function __construct(private MailerInterface $mailer)
+    {
+    }
+
     /**
      * The function sendEmail allows to send a mail, depending on adresses, subject, title...It uses a specific template in templates/emails directory
      *
@@ -34,15 +36,16 @@ class MailerService
      * @param string $site
      * @return void
      */
-    public function sendEmail($dsn, $fromEmail, $toEmail, $ccEmail, $subject, $title, $beginning, $middle, $end, $client, $site): void 
+    public function sendEmail($dsn, $fromEmail, $toEmail1, $toemail2, $ccEmail, $subject, $title, $beginning, $middle, $end, $client, $site): void
     {
         $transport = Transport::fromDsn($dsn);
         $mailer = new Mailer($transport);
         $email = (new TemplatedEmail())
             ->from(new Address($fromEmail, 'Appartement Bénodet'))
-            ->to($toEmail)
+            ->to($toEmail1)
+            ->to($toemail2)
             ->cc($ccEmail)
-            ->subject('Corniche de la plage : '.$subject)
+            ->subject('Corniche de la plage : ' . $subject)
             ->htmlTemplate('informationMail.html.twig')
             ->context([
                 'client' => $client,
@@ -52,13 +55,11 @@ class MailerService
                 'middle' => $middle,
                 'end' => $end,
                 'site' => $site,
-            ])
-            ;
+            ]);
         $loader = new FilesystemLoader('../templates/emails');
         $twigEnv = new Environment($loader);
         $twigBodyRenderer = new BodyRenderer($twigEnv);
         $twigBodyRenderer->render($email);
         $mailer->send($email);
-    }       
+    }
 }
-

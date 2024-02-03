@@ -21,12 +21,11 @@ class LoginController extends AbstractController
     #[Route('/', name: 'app_login')]
     public function login(
         AuthenticationUtils $authenticationUtils
-    ): Response
-    {
+    ): Response {
         $error = $authenticationUtils->getLastAuthenticationError();
-        
+
         return $this->render('login/index.html.twig', [
-            'error'         => $error,
-        ]);
+             'error'         => $error,
+         ]);
     }
 }

@@ -38,6 +38,7 @@ class ClientController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             // By default, the parameter cleaned is false to indicate that his departure hasn't been done yet
             $client->setCleaned(false);
+            $client->setNoticed(false);
             // The parameters red, green and blue are used to generate a random color for each client (used for card display)
             $client->setRed(rand(150, 255));
             $client->setGreen(rand(150, 255));
@@ -48,7 +49,7 @@ class ClientController extends AbstractController
             $beginning = "La réservation de";
             $middle = "pour la période";
             $end = "vient d'être ajoutée";
-            $mailerService->sendEmail($this->getParameter('MAILER_DSN'), $this->getParameter('MAIL_FROM'), $this->getParameter('MAIL_MAID'), $this->getParameter('MAIL_ADMIN'), $subject, $title, $beginning, $middle, $end, $client, $this->getParameter('SITE_ADDR'));
+            $mailerService->sendEmail($this->getParameter('MAILER_DSN'), $this->getParameter('MAIL_FROM'), $this->getParameter('MAIL_MAID'), $this->getParameter('MAIL_MAID_2'), $this->getParameter('MAIL_ADMIN'), $subject, $title, $beginning, $middle, $end, $client, $this->getParameter('SITE_ADDR'));
             // Once the mail is send, the new client is persisted in database
             $entityManagerInterface->persist($client);
             $entityManagerInterface->flush();
@@ -112,8 +113,8 @@ class ClientController extends AbstractController
         $client = $clientRepository->findOneBy(['id' => $id]);
         $entityManagerInterface->remove($client);
         $entityManagerInterface->flush();
-        if($client->isCleaned() == false) {
-             // A mail is send to the owner to indicate that the rental is canceled before it's arrival
+        if ($client->isCleaned() == false) {
+            // A mail is send to the owner to indicate that the rental is canceled before it's arrival
             $subject = "annulation de réservation";
             $title = "Séjour annulé";
             $beginning = "Le séjour de";
@@ -121,7 +122,7 @@ class ClientController extends AbstractController
             $end = "vient d'être annulé";
             $mailerService->sendEmail($this->getParameter('MAILER_DSN'), $this->getParameter('MAIL_FROM'), $this->getParameter('MAIL_MAID'), $this->getParameter('MAIL_ADMIN'), $subject, $title, $beginning, $middle, $end, $client, $this->getParameter('SITE_ADDR'));
         }
-        
+
         return $this->redirectToRoute('app_home');
     }
 
@@ -133,7 +134,7 @@ class ClientController extends AbstractController
      * @return Response
      */
     #[Route('/notifié/{id}', name: 'app_noticed', methods: ['POST', 'GET'])]
-    public function setNoticed (
+    public function setNoticed(
         ClientRepository $clientRepository,
         EntityManagerInterface $entityManagerInterface,
         int $id,
@@ -145,7 +146,8 @@ class ClientController extends AbstractController
         return $this->json([
             'code' => 200,
             'message' => "mise à jour effectuée",
-            'status' => 1], 200);
+            'status' => 1
+        ], 200);
     }
 
 
@@ -175,7 +177,7 @@ class ClientController extends AbstractController
         $middle = "locataire";
         $end = "vient d'être effectué";
         $mailerService->sendEmail($this->getParameter('MAILER_DSN'), $this->getParameter('MAIL_FROM'), $this->getParameter('MAIL_OWNER'), $this->getParameter('MAIL_ADMIN'), $subject, $title, $beginning, $middle, $end, $client, $this->getParameter('SITE_ADDR'));
-        
+
         return $this->redirectToRoute('app_home');
     }
 }
