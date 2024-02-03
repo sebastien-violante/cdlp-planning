@@ -9,6 +9,7 @@ parameters:
     MAIL_MAID: '%env(MAIL_MAID)%'
     MAIL_MAID_2: '%env(MAIL_MAID_2)%'
     MAIL_OWNER: '%env(MAIL_OWNER)%'
+    MAIL_OWNER_2: '%env(MAIL_OWNER_2)%'
     MAIL_ADMIN: '%env(MAIL_ADMIN)%'
     SITE_ADDR: '%env(SITE_ADDR)%'
 services:

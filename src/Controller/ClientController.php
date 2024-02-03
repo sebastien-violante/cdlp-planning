@@ -176,7 +176,7 @@ class ClientController extends AbstractController
         $beginning = "Le départ de";
         $middle = "locataire";
         $end = "vient d'être effectué";
-        $mailerService->sendEmail($this->getParameter('MAILER_DSN'), $this->getParameter('MAIL_FROM'), $this->getParameter('MAIL_OWNER'), $this->getParameter('MAIL_ADMIN'), $subject, $title, $beginning, $middle, $end, $client, $this->getParameter('SITE_ADDR'));
+        $mailerService->sendEmail($this->getParameter('MAILER_DSN'), $this->getParameter('MAIL_FROM'), $this->getParameter('MAIL_OWNER'), $this->getParameter('MAIL_OWNER_2'), $this->getParameter('MAIL_ADMIN'), $subject, $title, $beginning, $middle, $end, $client, $this->getParameter('SITE_ADDR'));
 
         return $this->redirectToRoute('app_home');
     }
