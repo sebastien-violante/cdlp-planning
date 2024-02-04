@@ -160,3 +160,7 @@ hr {
 .vertical {
    flex-direction: column;
 }
+
+.coche {
+   width: 40px;
+}

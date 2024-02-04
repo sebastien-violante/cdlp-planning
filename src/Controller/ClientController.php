@@ -120,7 +120,7 @@ class ClientController extends AbstractController
             $beginning = "Le séjour de";
             $middle = "locataire";
             $end = "vient d'être annulé";
-            $mailerService->sendEmail($this->getParameter('MAILER_DSN'), $this->getParameter('MAIL_FROM'), $this->getParameter('MAIL_MAID'), $this->getParameter('MAIL_ADMIN'), $subject, $title, $beginning, $middle, $end, $client, $this->getParameter('SITE_ADDR'));
+            $mailerService->sendEmail($this->getParameter('MAILER_DSN'), $this->getParameter('MAIL_FROM'), $this->getParameter('MAIL_MAID'), $this->getParameter('MAIL_MAID_2'), $this->getParameter('MAIL_ADMIN'), $subject, $title, $beginning, $middle, $end, $client, $this->getParameter('SITE_ADDR'));
         }
 
         return $this->redirectToRoute('app_home');
@@ -150,6 +150,19 @@ class ClientController extends AbstractController
         ], 200);
     }
 
+    /**
+     * function chooseHouseMaid aloows to select the housemaid who cleaned the appartment, so as to count exactly the number of hours by month for each housemaid
+     *  @param int $id : the id of the client
+     */
+    #[Route('/housemaid/{id}', name: 'app_housemaid', methods: ['POST'])]
+    public function chooseHouseMaid(
+        int $id,
+
+    ): Response {
+        return $this->render('client/housemaid.html.twig', [
+            'clientId' => $id
+        ]);
+    }
 
     /**
      * function cleanedClient allows to indicate the departure of a client. A mail is generated to warn the owner immediatly
@@ -159,13 +172,16 @@ class ClientController extends AbstractController
      * @param MailerService $mailerService
      * @return Response
      */
-    #[Route('/cleaned/{id}', name: 'app_clean', methods: ['POST', 'GET'])]
+    #[Route('/cleaned/{id}/{housemaid}', name: 'app_clean', methods: ['POST', 'GET'])]
     public function cleanedClient(
         ClientRepository $clientRepository,
         EntityManagerInterface $entityManagerInterface,
         MailerService $mailerService,
         int $id,
+        string $housemaid
     ): Response {
+        echo ($id . ' ' . $housemaid);
+        die;
         $client = $clientRepository->findOneBy(['id' => $id]);
         // The client parameter cleaned is sert to tru to indicate that it's departure has been validated
         $client->setCleaned(true);

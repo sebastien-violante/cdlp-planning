@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+	{{ parent() }}
+	| Départ
+{% endblock %}
+
+{% block body %}
+	<div class="example-wrapper" id={{clientId}}>
+		<div class="card" style="width: 18rem;">
+			<img src="{{ asset('_assets/pictures/luggage.jpg') }}" class="card-img-top" alt="...">
+			<div class="card-body">
+				<p class="card-text">Qui a fait le départ ?</p>
+				<div class="d-flex">
+					<div style="position: relative" class="w-50 mx-1">
+						<a id="solene" href="#" class="btn btn-outline-warning w-100 housemaidChooseButton">Solène</a>
+						<img src="{{ asset('_assets/pictures/coche.png') }}" style="height: 40px; position:absolute; top:-15px; left:75px" class="coche invisible">
+					</div>
+					<div style="position: relative" class="w-50 mx-1">
+						<a id="claudine" href="#" class="btn btn-outline-warning w-100 housemaidChooseButton">Claudine</a>
+						<img src="{{ asset('_assets/pictures/coche.png') }}" style="height: 40px; position:absolute; top:-15px; left:75px" class="coche invisible">
+					</div>
+				</div>
+				<hr>
+				<a href="" class="validate btn btn-warning w-100">Valider</a>
+			</div>
+		</div>
+	</div>
+	<script>
+		let buttons = document.querySelectorAll('.housemaidChooseButton')
+buttons.forEach((button) => {
+button.addEventListener('click', function (event) {
+buttons.forEach((button) => {
+button.nextElementSibling.classList.add('invisible')
+})
+event.target.nextElementSibling.classList.remove('invisible')
+let validateButton = document.querySelector('.validate')
+let clientId = button.id
+let housemaidId = document.querySelector('.example-wrapper').id
+console.log(clientId + ' ' + housemaidId)
+window.location.href = '{{ path('app_clean', {'id': clientId, 'housemaid': housemaidId}) }}';
+})
+})
+	</script>
+{% endblock %}
