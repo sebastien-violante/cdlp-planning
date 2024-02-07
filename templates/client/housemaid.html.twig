@@ -6,7 +6,7 @@
 {% endblock %}
 
 {% block body %}
-	<div class="example-wrapper" id={{clientId}}>
+	<div class="example-wrapper">
 		<div class="card" style="width: 18rem;">
 			<img src="{{ asset('_assets/pictures/luggage.jpg') }}" class="card-img-top" alt="...">
 			<div class="card-body">
@@ -22,11 +22,15 @@
 					</div>
 				</div>
 				<hr>
-				<a href="" class="validate btn btn-warning w-100">Valider</a>
+				<form action="{{ path('app_clean') }}" method="post">
+					<input type="text" name="housemaid" class="housemaidInput">
+					<input type="submit" class="validate btn btn-warning w-100" value="valider">
+				</form>
 			</div>
 		</div>
 	</div>
 	<script>
+
 		let buttons = document.querySelectorAll('.housemaidChooseButton')
 buttons.forEach((button) => {
 button.addEventListener('click', function (event) {
@@ -34,11 +38,8 @@ buttons.forEach((button) => {
 button.nextElementSibling.classList.add('invisible')
 })
 event.target.nextElementSibling.classList.remove('invisible')
-let validateButton = document.querySelector('.validate')
-let clientId = button.id
-let housemaidId = document.querySelector('.example-wrapper').id
-console.log(clientId + ' ' + housemaidId)
-window.location.href = '{{ path('app_clean', {'id': clientId, 'housemaid': housemaidId}) }}';
+document.querySelector('.housemaidInput').value = event.target.id
+
 })
 })
 	</script>

@@ -154,14 +154,13 @@ class ClientController extends AbstractController
      * function chooseHouseMaid aloows to select the housemaid who cleaned the appartment, so as to count exactly the number of hours by month for each housemaid
      *  @param int $id : the id of the client
      */
-    #[Route('/housemaid/{id}', name: 'app_housemaid', methods: ['POST'])]
+    #[Route('/housemaid/{id}', name: 'app_housemaid', methods: ['POST', 'GET'])]
     public function chooseHouseMaid(
-        int $id,
-
+        int $id
     ): Response {
-        return $this->render('client/housemaid.html.twig', [
-            'clientId' => $id
-        ]);
+        $_SESSION['clientId'] = $id;
+
+        return $this->render('client/housemaid.html.twig');
     }
 
     /**
@@ -172,18 +171,15 @@ class ClientController extends AbstractController
      * @param MailerService $mailerService
      * @return Response
      */
-    #[Route('/cleaned/{id}/{housemaid}', name: 'app_clean', methods: ['POST', 'GET'])]
+    #[Route('/cleaned', name: 'app_clean', methods: ['POST', 'GET'])]
     public function cleanedClient(
         ClientRepository $clientRepository,
         EntityManagerInterface $entityManagerInterface,
         MailerService $mailerService,
-        int $id,
-        string $housemaid
     ): Response {
-        echo ($id . ' ' . $housemaid);
-        die;
-        $client = $clientRepository->findOneBy(['id' => $id]);
-        // The client parameter cleaned is sert to tru to indicate that it's departure has been validated
+        // catch the client in base according to its id in session
+        $client = $clientRepository->findOneBy(['id' => $_SESSION['clientId']]);
+        // The client parameter cleaned is sert to true to indicate that it's departure has been validated
         $client->setCleaned(true);
         $entityManagerInterface->flush();
         // A mail is send to the owner to indicate that the departure has been done
@@ -193,6 +189,7 @@ class ClientController extends AbstractController
         $middle = "locataire";
         $end = "vient d'être effectué";
         $mailerService->sendEmail($this->getParameter('MAILER_DSN'), $this->getParameter('MAIL_FROM'), $this->getParameter('MAIL_OWNER'), $this->getParameter('MAIL_OWNER_2'), $this->getParameter('MAIL_ADMIN'), $subject, $title, $beginning, $middle, $end, $client, $this->getParameter('SITE_ADDR'));
+
 
         return $this->redirectToRoute('app_home');
     }

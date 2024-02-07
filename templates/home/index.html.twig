@@ -55,7 +55,7 @@
 					{% endif %}
 					{% if client.cleaned == false %}
 						<div class="flex">
-							<form class="" method="POST" action="{{ path('app_housemaid', {'id': client.id}) }}">
+							<form class="" method="POST" action="{{ path('app_housemaid', {'id': client.id }) }}">
 								<input class="btn btn-primary w-100" type="submit" value="Valider le départ">
 							</form>
 						</div>
