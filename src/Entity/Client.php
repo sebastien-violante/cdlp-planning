@@ -53,6 +53,9 @@ class Client
     #[ORM\Column]
     private ?bool $noticed = null;
 
+    #[ORM\ManyToOne(inversedBy: 'client')]
+    private ?Housemaid $housemaid = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -210,6 +213,18 @@ class Client
     public function setNoticed(bool $noticed): static
     {
         $this->noticed = $noticed;
+
+        return $this;
+    }
+
+    public function getHousemaid(): ?Housemaid
+    {
+        return $this->housemaid;
+    }
+
+    public function setHousemaid(?Housemaid $housemaid): static
+    {
+        $this->housemaid = $housemaid;
 
         return $this;
     }

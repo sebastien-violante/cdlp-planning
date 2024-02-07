@@ -23,8 +23,8 @@
 				</div>
 				<hr>
 				<form action="{{ path('app_clean') }}" method="post">
-					<input type="text" name="housemaid" class="housemaidInput">
-					<input type="submit" class="validate btn btn-warning w-100" value="valider">
+					<input type="hidden" name="housemaid" class="housemaidInput">
+					<input type="submit" class="validate btn btn-warning w-100 invisible" value="valider">
 				</form>
 			</div>
 		</div>
@@ -38,6 +38,7 @@ buttons.forEach((button) => {
 button.nextElementSibling.classList.add('invisible')
 })
 event.target.nextElementSibling.classList.remove('invisible')
+document.querySelector('.validate').classList.remove('invisible')
 document.querySelector('.housemaidInput').value = event.target.id
 
 })

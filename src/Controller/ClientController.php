@@ -7,6 +7,7 @@ use App\Form\ClientType;
 use App\Form\UnaviabilityType;
 use App\Services\MailerService;
 use App\Repository\ClientRepository;
+use App\Repository\HousemaidRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -174,6 +175,7 @@ class ClientController extends AbstractController
     #[Route('/cleaned', name: 'app_clean', methods: ['POST', 'GET'])]
     public function cleanedClient(
         ClientRepository $clientRepository,
+        HousemaidRepository $housemaidRepository,
         EntityManagerInterface $entityManagerInterface,
         MailerService $mailerService,
     ): Response {
@@ -190,6 +192,13 @@ class ClientController extends AbstractController
         $end = "vient d'être effectué";
         $mailerService->sendEmail($this->getParameter('MAILER_DSN'), $this->getParameter('MAIL_FROM'), $this->getParameter('MAIL_OWNER'), $this->getParameter('MAIL_OWNER_2'), $this->getParameter('MAIL_ADMIN'), $subject, $title, $beginning, $middle, $end, $client, $this->getParameter('SITE_ADDR'));
 
+        // register the housemaid who cleaned the client
+        $housemaid = $housemaidRepository->findOneBy(['name' => $_POST['housemaid']]);
+        $client->setHousemaid($housemaid);
+
+        // persist data into base
+        $entityManagerInterface->persist($client);
+        $entityManagerInterface->flush();
 
         return $this->redirectToRoute('app_home');
     }
