@@ -1,0 +1,67 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello HousemaidController!
+{% endblock %}
+
+{% block body %}
+	<style>
+		.example-wrapper {
+			margin: 1em auto;
+			max-width: 800px;
+			width: 95%;
+			font: 18px / 1.5 sans-serif;
+		}
+		.example-wrapper code {
+			background: #F5F5F5;
+			padding: 2px 6px;
+		}
+	</style>
+
+	<div class="example-wrapper">
+		<h1 class="text-center">Récapitulatif mensuel</h1>
+		<hr>
+		<form>
+			<div class="flex">
+				<div class="w-50">
+					<legend class="text-center">Mois</legend>
+					<select name="month" class="form-select">
+						<option value="janvier">Janvier</option>
+						<option value="fevrier">Février</option>
+						<option value="mars">Mars</option>
+						<option value="avril">Avril</option>
+						<option value="mai">Mai</option>
+						<option value="juin">Juin</option>
+						<option value="juillet">Juillet</option>
+						<option value="aout">Août</option>
+						<option value="septembre">Septembre</option>
+						<option value="octobre">Octobre</option>
+						<option value="novembre">Novembre</option>
+						<option value="decembre">Décembre</option>
+					</select>
+				</div>
+				<div class="w-50">
+					<legend class="text-center">Année</legend>
+					<select name="year" class="form-select">
+						<option value="2024">2024</option>
+						<option value="2025">2025</option>
+						<option value="2026">2026</option>
+					</select>
+				</div>
+			</div>
+			<div class="text-center">
+				<a type="button" href="{{ path('app_results_housemaid', {month:'january', year:'2024'})}}" class="validate btn btn-outline-success w-50 mt-3">Afficher</a>
+			</div>
+		</form>
+		<div class="mt-3" style="border:1px solid grey;"></div>
+
+	</div>
+
+	<script>
+		document.querySelector('.validate').addEventListener('click', function (event) {
+event.preventDefault;
+console.log('cliqué !');
+let link = event.target.href;
+console.log(link);
+})
+	</script>
+{% endblock %}
