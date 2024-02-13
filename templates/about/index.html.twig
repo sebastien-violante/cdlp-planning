@@ -1,29 +1,41 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello AboutController!{% endblock %}
+{% block title %}Hello AboutController!
+{% endblock %}
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
+	<style>
+		.example-wrapper {
+			margin: 1em auto;
+			max-width: 800px;
+			width: 95%;
+			font: 18px / 1.5 sans-serif;
+		}
+		.example-wrapper code {
+			background: #F5F5F5;
+			padding: 2px 6px;
+		}
+	</style>
 
-<div class="example-wrapper">
-    <h1 class="mt-5">A propos de l'application</h1>
-    <hr>
-    <h3>Stack technique</h3>
-    <ul>
-        <li>PHP : 8.2</li>
-        <li>Symfony : 6</li>
-        <li>Bootstrap : 5</li>
-    </ul>
+	<div class="example-wrapper">
+		<h1 class="mt-5">A propos de l'application</h1>
+		<hr>
+		<h2>Version en cours : 1.3</h2>
+		<h3>Stack technique</h3>
+		<ul>
+			<li>PHP : 8.2</li>
+			<li>Symfony : 6</li>
+			<li>Bootstrap : 5</li>
+		</ul>
 
-    <h3>Suivi des versions</h3>
+		<h3>Suivi des versions</h3>
 
-    <ul>
-        <li>Version 1.0 du 05.09.2023 : version initiale</li>
-        <li>Version 1.1 du 29.09.2023 : ajout d'une section "à propos" dans le header, du calcul de temps restant avant l'arrivée d'un nouveau client à l'aide d'un filtre Twig personnalisé et ajout d'une condition pour ne pas envoyer de mail si la suppression a lieu après le départ</li>
-        <li>Version 1.2 du 03.11.2023 : ajout de la visualisation des périodes d'indisponibilité aide ménagère et de notification de l'envoi des notices d'arrivée</li>
-    </ul>
-</div>
+		<ul>
+			<li>Version 1.0 du 05.09.2023 : version initiale</li>
+			<li>Version 1.1 du 29.09.2023 : ajout d'une section "à propos" dans le header, du calcul de temps restant avant l'arrivée d'un nouveau client à l'aide d'un filtre Twig personnalisé et ajout d'une condition pour ne pas envoyer de mail si la suppression a lieu après le départ</li>
+			<li>Version 1.2 du 03.11.2023 : ajout de la visualisation des périodes d'indisponibilité aide ménagère et de notification de l'envoi des notices d'arrivée</li>
+			<li>Version 1.3 du 09.02.2024 : possibilité de choisir l'aide ménagère qui a réalisé le départ. Chaque client est désormais lié à une aide ménagère</li>
+
+		</ul>
+	</div>
 {% endblock %}
